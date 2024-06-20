@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Categories - Category - Martin&#39;s Coding World</title>
-        <link>http://localhost:1313/categories/</link>
+        <link>https://martins.nom.za/categories/</link>
         <description>Categories - Category - Martin&#39;s Coding World</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
-            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Fri, 17 May 2024 11:31:36 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Fri, 17 May 2024 11:31:36 &#43;0800</lastBuildDate><atom:link href="https://martins.nom.za/categories/" rel="self" type="application/rss+xml" /><item>
     <title>教程</title>
-    <link>http://localhost:1313/categories/%E6%95%99%E7%A8%8B/</link>
+    <link>https://martins.nom.za/categories/%E6%95%99%E7%A8%8B/</link>
     <pubDate>Fri, 17 May 2024 11:31:36 &#43;0800</pubDate>
     <author>码钉泥</author>
-    <guid>http://localhost:1313/categories/%E6%95%99%E7%A8%8B/</guid>
+    <guid>https://martins.nom.za/categories/%E6%95%99%E7%A8%8B/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>概念</title>
-    <link>http://localhost:1313/categories/%E6%A6%82%E5%BF%B5/</link>
+    <link>https://martins.nom.za/categories/%E6%A6%82%E5%BF%B5/</link>
     <pubDate>Wed, 01 May 2024 00:00:00 &#43;0000</pubDate>
     <author>码钉泥</author>
-    <guid>http://localhost:1313/categories/%E6%A6%82%E5%BF%B5/</guid>
+    <guid>https://martins.nom.za/categories/%E6%A6%82%E5%BF%B5/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

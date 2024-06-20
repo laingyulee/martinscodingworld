@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>虚拟化 - Tag - Martin&#39;s Coding World</title>
-        <link>http://localhost:1313/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/</link>
+        <link>https://martins.nom.za/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/</link>
         <description>虚拟化 - Tag - Martin&#39;s Coding World</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
-            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Fri, 17 May 2024 11:31:36 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Fri, 17 May 2024 11:31:36 &#43;0800</lastBuildDate><atom:link href="https://martins.nom.za/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
     <title>Docker快速入门</title>
-    <link>http://localhost:1313/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
+    <link>https://martins.nom.za/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
     <pubDate>Fri, 17 May 2024 11:31:36 &#43;0800</pubDate>
     <author>码钉泥</author>
-    <guid>http://localhost:1313/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
+    <guid>https://martins.nom.za/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
     <description><![CDATA[随着对大语言模型的深度使用，我们现在需要使用一些更加复杂的工具。这些工具并不是可以支持原生的Windows运行环境。为了能够在Windows上方便地使用这些软件或框架集，我们需要安装一套功能非常强大的运行环境，这个运行环境叫做Docker。]]></description>
 </item>
 </channel>

@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Chatbox - Tag - Martin&#39;s Coding World</title>
-        <link>http://localhost:1313/tags/chatbox/</link>
+        <link>https://martins.nom.za/tags/chatbox/</link>
         <description>Chatbox - Tag - Martin&#39;s Coding World</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
-            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/chatbox/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://martins.nom.za/tags/chatbox/" rel="self" type="application/rss+xml" /><item>
     <title>AI本地聊天工具 如何使用Chatbox进行AI对话</title>
-    <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/</link>
+    <link>https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/</link>
     <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
     <author>码钉泥</author>
-    <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/</guid>
+    <guid>https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/</guid>
     <description><![CDATA[大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。]]></description>
 </item>
 </channel>
