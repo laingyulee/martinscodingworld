@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Prompt - Tag - Martin&#39;s Coding World</title>
+        <title>Prompt - 标签 - Martin&#39;s Coding World</title>
         <link>https://martins.nom.za/tags/prompt/</link>
-        <description>Prompt - Tag - Martin&#39;s Coding World</description>
+        <description>Prompt - 标签 - Martin&#39;s Coding World</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
             <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://martins.nom.za/tags/prompt/" rel="self" type="application/rss+xml" /><item>
     <title>AI本地聊天工具 如何使用Chatbox进行AI对话</title>

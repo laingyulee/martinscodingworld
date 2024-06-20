@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Python - Tag - Martin&#39;s Coding World</title>
+        <title>Python - 标签 - Martin&#39;s Coding World</title>
         <link>https://martins.nom.za/tags/python/</link>
-        <description>Python - Tag - Martin&#39;s Coding World</description>
+        <description>Python - 标签 - Martin&#39;s Coding World</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
             <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Wed, 01 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://martins.nom.za/tags/python/" rel="self" type="application/rss+xml" /><item>
     <title>语言模型最重要的15个概念</title>

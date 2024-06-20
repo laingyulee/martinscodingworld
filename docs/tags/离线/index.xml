@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>离线 - Tag - Martin&#39;s Coding World</title>
+        <title>离线 - 标签 - Martin&#39;s Coding World</title>
         <link>https://martins.nom.za/tags/%E7%A6%BB%E7%BA%BF/</link>
-        <description>离线 - Tag - Martin&#39;s Coding World</description>
+        <description>离线 - 标签 - Martin&#39;s Coding World</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
             <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://martins.nom.za/tags/%E7%A6%BB%E7%BA%BF/" rel="self" type="application/rss+xml" /><item>
     <title>无需显卡 利用chatglm3-6b来搭建自己的本地大源模型</title>
