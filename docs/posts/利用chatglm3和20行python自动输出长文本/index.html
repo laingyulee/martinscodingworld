@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>AI自动写稿 利用ChatGLM3和Python自动输出长文本 - Martin&#39;s Coding World</title><meta name="Description" content="码码钉泥的编程世界"><meta property="og:url" content="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/">
+  <meta property="og:site_name" content="Martin&#39;s Coding World">
+  <meta property="og:title" content="AI自动写稿 利用ChatGLM3和Python自动输出长文本">
+  <meta property="og:description" content="本教程介绍了如何使用ChatGLM3和Python实现自动撰写稿件，提高写作效率。涵盖了本地大语言模型的优势、自动输出的局限性、长度限制问题以及如何通过设置系统提示词和对话结构来优化AI写作流程。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-12-17T00:00:00+00:00">
+    <meta property="article:tag" content="ChatGLM3">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="自动写作">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="LLM">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI自动写稿 利用ChatGLM3和Python自动输出长文本">
+  <meta name="twitter:description" content="本教程介绍了如何使用ChatGLM3和Python实现自动撰写稿件，提高写作效率。涵盖了本地大语言模型的优势、自动输出的局限性、长度限制问题以及如何通过设置系统提示词和对话结构来优化AI写作流程。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" /><link rel="prev" href="http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" /><link rel="next" href="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AI自动写稿 利用ChatGLM3和Python自动输出长文本",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC\/"
+        },"genre": "posts","keywords": "ChatGLM3, Python, 自动写作, AI, LLM","wordcount":  2437 ,
+        "url": "http:\/\/localhost:1313\/posts\/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC\/","datePublished": "2023-12-17T00:00:00+00:00","dateModified": "2023-12-17T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "码钉泥"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/books/"> 电子书 </a><a class="menu-item" href="/gpus/"> 显卡推荐 </a><a class="menu-item" href="/package/"> 懒人包 </a><a class="menu-item" href="/service/"> 付费服务 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 存档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/books/" title="">电子书</a><a class="menu-item" href="/gpus/" title="">显卡推荐</a><a class="menu-item" href="/package/" title="">懒人包</a><a class="menu-item" href="/service/" title="">付费服务</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">存档</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AI自动写稿 利用ChatGLM3和Python自动输出长文本</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://martins.nom.za" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>码钉泥</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>教程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-17">2023-12-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2437 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#为什么选用本地大语言模型">为什么选用本地大语言模型</a></li>
+        <li><a href="#自动输出">自动输出</a></li>
+        <li><a href="#长度限制">长度限制</a></li>
+        <li><a href="#解决方案">解决方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#技巧">技巧</a></li>
+    <li><a href="#代码">代码</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="利用chatglm3和20行python自动输出长文本">利用ChatGLM3和20行Python自动输出长文本</h1>
+<p>更多AIGC教程，访问UP「码钉泥」的B站
+<a href="https://space.bilibili.com/650927704/" target="_blank" rel="noopener noreffer ">https://space.bilibili.com/650927704/</a></p>
+<p>经过前面的两篇教程的铺垫，我们今天可以进入正题：AI自动写稿。自动写稿可以帮助我们批量准备底稿，极大提高写作效率。</p>
+<p>我们今天带大家进行简单的Python编写，实现利用本地的ChatGLM3大语言模型，实现自动撰写稿件的目的。</p>
+<p>如果大家没有Python语言的编程基础也不用着急，因为这是一门非常容易入门的语言。</p>
+<h3 id="为什么选用本地大语言模型">为什么选用本地大语言模型</h3>
+<p>在前面的教程中，我们选择了使用ChatGLM3搭建本地的大语言模型。在线模型已经够好用了，为什么还要搭建本地大语言模型？因为费用问题。</p>
+<p>本地搭建最大的价值，不仅在于离线操作、保障数据安全，而且——它还可以进行几乎无限的本地API调用。</p>
+<p>那么如果你选择采用像ChatGPT这样的在线大语言模型，进行API调用需要付费。尽管ChatGPT3.5的API调用费率并不算很高（1000 token ~ ￥0.014），但是它的支付门槛确实比较高的，那就是要求你有一张境外的信用卡。而选择本地离线的大远模型，则不会有成本方面的顾虑。</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gpt-3.5-turbo</td>
+<td>$0.002 / 1K tokens</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自动输出">自动输出</h3>
+<p>大语言模型可以实现自动输出吗？简单的答案是：可以。</p>
+<p>然而这种输出必然是存在局限的。自动输出的内容受限于大语言模型被训练时所获得的信息。如果你采用在线大语言模型，则不必担心信息的局限性；但是如果你采用本地大语言模型，则需要频繁对本地大语言模型进行更新，或者通过Lora微调的形式为它增加更新的信息。</p>
+<h3 id="长度限制">长度限制</h3>
+<p>大语言模型一次输出内容的长度是有限的。</p>
+<p>这是由于大语言模型在训练的过程中所采用的训练文本长度是有限的，另外transformer架构在进行长文本推理时也存在一些技术上的不足。这就好像你不能够要求一位小学三年级学生写出上万字篇幅的论文一样——他仅仅只熟悉篇幅为一两百字的日记的写法。</p>
+<p>计算这种长度的单位叫做token。</p>
+<p>在大语言模型中，Token指的是模型处理的最小单位，是一个“语义元素”，通常是一个单词（对应中文的词汇）、一个标点符号或者一个子词（子词指的构成英语单词、具有含义的前缀或后缀，对应中文词汇中的单字）。</p>
+<p>大语言模型一般都使用token来计算消耗的运算资源。有一种粗略的换算比例，那就是每1000 Token.可以处理750个英文单词，或者500个左 Token除了 Token。</p>
+<p>Token除了被用来用作计费单位，同样也用来标记大语言模型能够处理的上<strong>下文的长度</strong>。早期的ChatGPT能够处理的token数量是4000（4k），因为每一次新的对话都会附带之前对话的全文。因此，随着对话的深入，所消耗的token就会越来越大。因此，早期的大语言模型在对话进行到十几轮之后，便存在资源耗尽的困境。</p>
+<p>现在已经有很多大语言模型能够轻松处理32k~128k的 token，可以一次性处理非常长的文本材料。月之暗面出品的Kimi甚至可以一次性处理200万字的文本材料。但是本地大语言模型可以处理的token长度，普遍都在8k左右。</p>
+<h3 id="解决方案">解决方案</h3>
+<p>大模型就像一个健忘的秘书。他拥有长期记忆，却容易忽略当前对话的上下文。为了让它实现长文本写作，我们必须设置好分段输出的内容大纲。这一点在应用文写作上比较容易解决，但是如果放在文学创作上则显得力有不殆。因此我们仅仅讨论应用文的写作。关于文学写作，大家可以自行尝试摸索。</p>
+<p>适合AI进行自动写作的应用文结构主要有两种：QA结构、总分总结构。</p>
+<p>QA结构，也就是“问题-答案”结构，是一种非常适宜AI进行长文本输出的写作结构。我们的代码主要演示的就是这一类文体的自动写作。其技术核心就是1)设置系统提示词，2)拼接对话，3)输出内容，4)拼接成长文本文档。</p>
+<h2 id="技巧">技巧</h2>
+<p>第1步，设定人设。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">sys_prompt</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 通过给role设置为system，给Chat模型的此处对话赋予角色定位</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;system&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;你是一位非常专业的财经专栏作家，擅长解读财经概念。&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>第2步，输出问题列表。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">big_question</span> <span class="o">=</span> <span class="n">sys_prompt</span> <span class="o">+</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s1">&#39;我正在准备一篇专题报道，请帮我列出关于美国证监会最重要的10个问题。</span><span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="s1">        请直接用数字列表列出这些问题。&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个 GPT-3 请求</span>
+</span></span><span class="line"><span class="cl"><span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="s2">&#34;chatgpt-3.5-turbo&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">top_p</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="n">msg</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">respond</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">respond</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出如下</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. 是什么美国证监会的功能和作用？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 它的历史是什么？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 它的主要职责是什么？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 它如何监管美国的证券市场？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. 它如何保护投资者利益？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. 它如何确保公司的财务报告的准确性和公正性？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 7. 它如何防止欺诈和操纵市场？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 8. 它如何确定公司的股票价格是否公正？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 9. 它如何监管证券交易？</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 10. 它如何监管股票市场的指数？</span>
+</span></span></code></pre></div><p>第3步，将问题列表中的问题重新输入给AI。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">respond</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	      <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	      <span class="n">save_result</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	      <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	      <span class="n">q</span> <span class="o">=</span> <span class="n">sys_prompt</span> <span class="o">+</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">	          <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">	          <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;我正在准备一篇关于美国证监会的专题报道。&#34;</span>
+</span></span><span class="line"><span class="cl">	      <span class="p">},{</span>
+</span></span><span class="line"><span class="cl">	          <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">	          <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">line</span>
+</span></span><span class="line"><span class="cl">	      <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">	      <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">				    <span class="n">model</span> <span class="o">=</span> <span class="s2">&#34;chatgpt-3.5-turbo&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				    <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				    <span class="n">top_p</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				    <span class="n">messages</span> <span class="o">=</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl">				<span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">respond</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+</span></span><span class="line"><span class="cl">	      <span class="nb">print</span><span class="p">(</span><span class="n">respond</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></span></code></pre></div><p>第4步，将输出的文本内容合并成txt文档或者md文档。</p>
+<p>这里就不赘述了。请参考下面完整的代码。</p>
+<h2 id="代码">代码</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-k&#34;</span><span class="p">,</span> <span class="s2">&#34;--keyword&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;关键字&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-n&#34;</span><span class="p">,</span> <span class="s2">&#34;--number&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;问题数量&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">api_key</span><span class="o">=</span> <span class="s2">&#34;API Key&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_url</span><span class="o">=</span> <span class="s2">&#34;http://127.0.0.1:8000/v1&#34;</span> <span class="c1"># ChatGLM3本地端口</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">keyword</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">keyword</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">keyword</span> <span class="k">else</span> <span class="s1">&#39;上海&#39;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">number</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">number</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">number</span> <span class="k">else</span> <span class="mi">20</span> 
+</span></span><span class="line"><span class="cl"><span class="n">question</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;如果你是一名财经记者，请帮我列出关于</span><span class="si">{</span><span class="n">keyword</span><span class="si">}</span><span class="s1">最重要的</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s1">个问题。请直接用数字列表列出这些问题。&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sys_prompt</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 通过给role设置为system，给Chat模型的此处对话赋予角色定位</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;system&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;你是一位非常专业的财经专栏作家，擅长解读财经概念。&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">request_completion</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 创建一个 GPT-3 请求</span>
+</span></span><span class="line"><span class="cl">    <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">model</span> <span class="o">=</span> <span class="s2">&#34;chatgpt-3.5-turbo&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">top_p</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span> <span class="o">=</span> <span class="n">msg</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">respond</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">respond</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">save_result</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;answer.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">save_result</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">big_question</span> <span class="o">=</span> <span class="n">sys_prompt</span> <span class="o">+</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">question</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">outlines</span> <span class="o">=</span> <span class="n">request_completion</span><span class="p">(</span><span class="n">big_question</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">save_result</span><span class="p">(</span><span class="n">outlines</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">outlines</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">save_result</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">q</span> <span class="o">=</span> <span class="n">sys_prompt</span> <span class="o">+</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;我们来讨论一下</span><span class="si">{</span><span class="n">keyword</span><span class="si">}</span><span class="s2">。&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">line</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">answer</span> <span class="o">=</span> <span class="n">request_completion</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">save_result</span><span class="p">(</span><span class="n">answer</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time_lapse</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;回答结束！耗时</span><span class="si">{</span><span class="n">time_lapse</span><span class="si">}</span><span class="s1">秒&#39;</span><span class="p">)</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-17</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" data-title="AI自动写稿 利用ChatGLM3和Python自动输出长文本" data-hashtags="ChatGLM3,Python,自动写作,AI,LLM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" data-hashtag="ChatGLM3"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" data-title="AI自动写稿 利用ChatGLM3和Python自动输出长文本"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" data-title="AI自动写稿 利用ChatGLM3和Python自动输出长文本"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" data-title="AI自动写稿 利用ChatGLM3和Python自动输出长文本"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/chatglm3/">ChatGLM3</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E8%87%AA%E5%8A%A8%E5%86%99%E4%BD%9C/">自动写作</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/llm/">LLM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" class="prev" rel="prev" title="AI本地聊天工具 如何使用Chatbox进行AI对话"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AI本地聊天工具 如何使用Chatbox进行AI对话</a>
+            <a href="/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" class="next" rel="next" title="利用AI解读本地WORD和PDF文档 构建自有知识库">利用AI解读本地WORD和PDF文档 构建自有知识库<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">码钉泥的编程世界 | 哔哩哔哩教程</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://martins.nom.za" target="_blank">码钉泥</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

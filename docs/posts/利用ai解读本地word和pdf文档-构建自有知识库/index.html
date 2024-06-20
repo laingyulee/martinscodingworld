@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>利用AI解读本地WORD和PDF文档 构建自有知识库 - Martin&#39;s Coding World</title><meta name="Description" content="码码钉泥的编程世界"><meta property="og:url" content="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/">
+  <meta property="og:site_name" content="Martin&#39;s Coding World">
+  <meta property="og:title" content="利用AI解读本地WORD和PDF文档 构建自有知识库">
+  <meta property="og:description" content="本教程带领大家使用 Ollama &#43; Qwen（通义千问大语言模型）&#43; AnythingLLM 搭建本地知识库，实现手搓 AI&#43;专家系统。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-03-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-03-17T00:00:00+00:00">
+    <meta property="article:tag" content="Langchain">
+    <meta property="article:tag" content="知识库">
+    <meta property="article:tag" content="RAG">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Ollama">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="利用AI解读本地WORD和PDF文档 构建自有知识库">
+  <meta name="twitter:description" content="本教程带领大家使用 Ollama &#43; Qwen（通义千问大语言模型）&#43; AnythingLLM 搭建本地知识库，实现手搓 AI&#43;专家系统。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" /><link rel="prev" href="http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" /><link rel="next" href="http://localhost:1313/posts/langchain-chatchat-%E6%90%AD%E5%BB%BA%E9%97%AE%E7%AD%94%E7%9F%A5%E8%AF%86%E5%BA%93/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "利用AI解读本地WORD和PDF文档 构建自有知识库",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93\/"
+        },"genre": "posts","keywords": "Langchain, 知识库, RAG, AI, Ollama","wordcount":  11537 ,
+        "url": "http:\/\/localhost:1313\/posts\/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93\/","datePublished": "2024-03-17T00:00:00+00:00","dateModified": "2024-03-17T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "码钉泥"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/books/"> 电子书 </a><a class="menu-item" href="/gpus/"> 显卡推荐 </a><a class="menu-item" href="/package/"> 懒人包 </a><a class="menu-item" href="/service/"> 付费服务 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 存档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/books/" title="">电子书</a><a class="menu-item" href="/gpus/" title="">显卡推荐</a><a class="menu-item" href="/package/" title="">懒人包</a><a class="menu-item" href="/service/" title="">付费服务</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">存档</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">利用AI解读本地WORD和PDF文档 构建自有知识库</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://martins.nom.za" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>码钉泥</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>教程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-17">2024-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11537 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;24 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-运行环境">1 运行环境</a>
+      <ul>
+        <li><a href="#11-安装大语言模型">1.1 安装大语言模型</a></li>
+        <li><a href="#12-安装向量模型">1.2 安装向量模型</a></li>
+        <li><a href="#13-利用langchain处理文档">1.3 利用Langchain处理文档</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-业务逻辑">2 业务逻辑</a></li>
+    <li><a href="#3-配置与优化">3 配置与优化</a></li>
+    <li><a href="#4-chatbox集成">4 ChatBox集成</a></li>
+    <li><a href="#5-总结">5 总结</a></li>
+    <li><a href="#增补教程">【增补教程】</a>
+      <ul>
+        <li><a href="#a-修改本地存储位置">A. 修改本地存储位置</a></li>
+        <li><a href="#b-模型推荐">B. 模型推荐</a></li>
+        <li><a href="#c-手动下载模型导入">C. 手动下载模型导入</a></li>
+        <li><a href="#d-anythingllm的api用法">D. AnythingLLM的API用法</a></li>
+        <li><a href="#e-docker部署ollama和anythingllm">E. Docker部署Ollama和AnythingLLM</a></li>
+        <li><a href="#f-向量库管理">F. 向量库管理</a></li>
+        <li><a href="#g-什么是量化模型">G. 什么是量化模型</a></li>
+        <li><a href="#h-什么是chunk分块如何设置chunk">H. <strong>什么是</strong>chunk（分块）如何设置chunk</a></li>
+        <li><a href="#i-如何设置max-context-snippets">I. 如何设置Max Context Snippets</a></li>
+        <li><a href="#j-知识库的内存显存需求">J. 知识库的内存/显存需求</a></li>
+        <li><a href="#k-管理本地向量数据库">K. 管理本地向量数据库</a></li>
+        <li><a href="#l-注册在线向量数据">L. 注册在线向量数据</a></li>
+        <li><a href="#qa-常见错误汇总">Q&amp;A 常见错误汇总</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="利用ai解读本地word和pdf文档-构建自有知识库">利用AI解读本地WORD和PDF文档 构建自有知识库</h1>
+<p>更多AIGC教程，访问UP「码钉泥」的B站
+<a href="https://space.bilibili.com/650927704/" target="_blank" rel="noopener noreffer ">https://space.bilibili.com/650927704/</a></p>
+<p>本教程带领大家使用 Ollama + Qwen（通义千问大语言模型）+ AnythingLLM 搭建本地知识库，实现手搓 AI+专家系统。今天给自己安排一位全能知识助手，领导再也不用担心我一问三不知了，升职加薪不是梦！</p>
+<p>大语言模型的发展真的是一日千里。在前面的教程中，我为各位观众老爷演示了如何利用清华大学出品的ChatGLM3搭建本地的大语言模型，并通过API实现自动化写作。</p>
+<p>随着ChatGLM4改为闭源发布，ChatGLM模型的热度一泻千里。新的大模型不断涌现，新的部署工具也层出不穷。阿里巴巴出品的通义千问迭代到1.5版本，性能基本超越ChatGLM3，成为我们新的选择。</p>
+<p>今天，我们就要带领大家使用通义千问和LangChain搭建本地知识库，让电脑变成我们信息小助理。</p>
+<h2 id="1-运行环境">1 运行环境</h2>
+<h3 id="11-安装大语言模型">1.1 安装大语言模型</h3>
+<p>在前面的教程中，我们自己配置了Python环境用来运行ChatGLM模型。现在，我们有了更加方便的工具，可以一条指令运行本地LLM模型，那就是Ollama。</p>
+<p>访问Ollama.com下载安装包。Ollama目前支持Linux、Windows和MacOS操作系统。并且支持CPU、NVIDIA GPU和AMD GPU。这意味着，如果你的电脑配有显卡，将会优先使用显卡进行推理（这样速度更快），如果没有显卡，将调用CPU进行推理（即使办公笔记本也可以运行，当然，推理速度会有点慢）。</p>
+<p>我们先下载最熟悉的Windows安装包。根据默认设置安装。</p>
+<p>安装完成后，打开一个CMD窗口，输入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ollama</span> <span class="n">pull</span> <span class="n">qwen</span><span class="err">:</span><span class="n">4b</span>
+</span></span></code></pre></div><p>这将帮你下载通义千问1.5_4B模型。模型的大小约2.3GB，无需魔法上网即可下载。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.png"
+        title="Image" /></p>
+<p>我这边下载了大概20分钟，下载完成后，可以使用Ollama默认的界面运行通义千问1.5_4B模型。</p>
+<p>打开一个CMD窗口，输入</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ollama</span> <span class="n">run</span> <span class="n">qwen</span><span class="err">:</span><span class="n">4b</span>
+</span></span></code></pre></div><p>然后，你就可以在CMD界面提出问题了。输入 <code>/bye</code> 可以退出聊天。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%201.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%201.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%201.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%201.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%201.png"
+        title="Image" /></p>
+<p>当然，这个界面只能做简单测试，我们后面将接入更加方便的图形界面（包括我们的老朋友Chatbox）进行本地对话。</p>
+<p>Ollama支持流行的开源大语言模型，包括llama2和它的众多衍生品（包括vicuna、codellama）,以及其他一些热点模型，例如Mistral、Dolphin、Falcon等。</p>
+<p>访问<a href="https://ollama.com/library" target="_blank" rel="noopener noreffer ">https://ollama.com/library</a>可以浏览Ollama提供的所有模型。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%202.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%202.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%202.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%202.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%202.png"
+        title="Image" /></p>
+<h3 id="12-安装向量模型">1.2 安装向量模型</h3>
+<p>下面我们将需要使用Ollama安装向量模型。向量模型比较小，大约230MB，很快就可以下载好</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">ollama</span> <span class="n">pull</span> <span class="nb">nomic-embed</span><span class="n">-text</span>
+</span></span></code></pre></div><p>这将会帮助我们下载nomic-embed-text:latest。其中latest表示最新版。</p>
+<p>向量模型是用来将Word和PDF文档转化成向量数据库的工具。通过向量模型转换之后，我们的大语言模型就可以更高效得理解文档内容。</p>
+<p>向量模型无法单独使用。</p>
+<h3 id="13-利用langchain处理文档">1.3 利用Langchain处理文档</h3>
+<p>Langchain是一套利用大语言模型处理向量数据的工具。以前，搭建LLM+Langchain的运行环境比较复杂。现在我们使用AnythingLLM可以非常方便的完成这个过程，因为AnythingLLM已经内置了Langchain组件。</p>
+<p>AnythingLLM是一个集成度非常高的大语言模型整合包。它包括了图形化对话界面、内置大语言模型、内置语音识别模型、内置向量模型、内置向量数据库、内置图形分析库。</p>
+<p>可惜的是，AnythingLLM目前的易用性和稳定性仍有所欠缺。因此，在本教程中，我们仅使用AnythingLLM的向量数据库和对话界面。LLM模型和向量模型仍然委托给Ollama来管理。</p>
+<p>AnythingLLM本身对Ollama的支持也非常完善。只需要通过图形界面，点击几下鼠标，我们就可以轻松完成配置。</p>
+<p>第一步，打开AnythingLLM左下角的配置界面</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%203.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%203.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%203.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%203.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%203.png"
+        title="Image" /></p>
+<p>第二步、配置LLM</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%204.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%204.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%204.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%204.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%204.png"
+        title="Image" /></p>
+<p>在LLM Preference选项卡中，选择Ollama作为后端。依次填写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="o">**</span><span class="nx">URL</span><span class="err">：</span><span class="p">[</span><span class="nx">http</span><span class="o">:</span><span class="c1">//127.0.0.1:11434](http://127.0.0.1:11434/)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Chat</span> <span class="nx">Model</span><span class="err">：</span><span class="nx">选择</span> <span class="nx">qwen</span><span class="o">:</span><span class="mi">4</span><span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Token</span><span class="err">：</span><span class="mi">8192</span><span class="o">**</span>
+</span></span></code></pre></div><p>点击窗口上方的“Save changes”保存生效。</p>
+<p>第三步、配置embedding模型</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%205.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%205.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%205.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%205.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%205.png"
+        title="Image" /></p>
+<p>在Embedding Model选项卡中，选择Ollama作为后端。依次填写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="o">**</span><span class="nx">URL</span><span class="err">：</span><span class="p">[</span><span class="nx">http</span><span class="o">:</span><span class="c1">//127.0.0.1:11434](http://127.0.0.1:11434/)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Chat</span> <span class="nx">Model</span><span class="err">：</span><span class="nx">选择</span> <span class="nx">nomic</span><span class="o">-</span><span class="nx">embed</span><span class="o">-</span><span class="nx">text</span><span class="o">:</span><span class="nx">latest</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Max</span> <span class="nx">embedding</span> <span class="nx">chunk</span> <span class="nx">length</span><span class="err">：</span><span class="mi">512</span><span class="o">**</span>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>点击窗口上方的“Save changes”保存生效。</p>
+<p>第四步、选择LanceDB向量数据库</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%206.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%206.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%206.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%206.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%206.png"
+        title="Image" /></p>
+<p>在Vector Database选项卡中，选择LanceDB作为后端。这是一个内置的向量数据库。</p>
+<p>如果你熟悉Pinecone等云端数据库，也可以配置相关的数据库，这样可以实现资料库漫游。</p>
+<h2 id="2-业务逻辑">2 业务逻辑</h2>
+<p>我们简单介绍一下整个工作流程。</p>
+<p><strong>第一步、创建向量数据库</strong></p>
+<p>文档→AnythingLLM→Ollama(Nomic Embedding)→向量数据→AnythingLLM(LanceDB)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%207.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%207.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%207.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%207.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%207.png"
+        title="Image" /></p>
+<p><strong>第二步、利用向量数据库回答</strong></p>
+<p>问题→AnythingLLM→Ollama(Qwen 4b)→AnythingLLM→答案</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%208.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%208.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%208.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%208.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%208.png"
+        title="Image" /></p>
+<h2 id="3-配置与优化">3 配置与优化</h2>
+<p>下面，我们开始进入AnythingLLM，配置Workspace以开始基于文档的对话。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%209.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%209.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%209.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%209.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%209.png"
+        title="Image" /></p>
+<p>点击 New Workspace，创建一个名为Chat的工作空间。无需进行任何设置，就可以直接开始与通义千问进行对话。</p>
+<p>再次点击 New Workspace，重新创建一个名为Test的工作空间。我们将在这个空间内上传一些文档。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2010.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2010.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2010.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2010.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2010.png"
+        title="Image" /></p>
+<p>点击上传图标，拖拽你的资料文档到下面这个大大的按钮上（你也可以单击它！）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2011.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2011.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2011.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2011.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2011.png"
+        title="Image" /></p>
+<p>AnythingLLM几乎支持所有包含文字的文档格式：txt、doc（word文档）、csv、xls（excel表格）、pdf等等。</p>
+<p>我推荐你上传word文档或pdf文档。注意：扫描图片制作的PDF暂时无法支持，你需要使用OCR软件将这种PDF转换成word文档上传。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2012.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2012.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2012.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2012.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2012.png"
+        title="Image" /></p>
+<p>上传完成后，选中相应的文档，并点击 Move to Workspcae。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2013.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2013.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2013.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2013.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2013.png"
+        title="Image" /></p>
+<p>然后点击Save and Embed。</p>
+<p>AnythingLLM便开始调用Nomic Embed模型处理你的文件。使用CPU处理一个文件大约需要5~10分钟。我上传的这份《2023中国网络文学产业研究报告》，全文有2万字（去掉了图片），处理了大约七八分钟。完成后，关闭上传窗口。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2014.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2014.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2014.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2014.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2014.png"
+        title="Image" /></p>
+<p>点击齿轮图标，打开Test空间的设置选项。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2015.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2015.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2015.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2015.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2015.png"
+        title="Image" /></p>
+<p>选择Chat Settings，将对话模式更改为Query（默认是Chat）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2016.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2016.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2016.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2016.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2016.png"
+        title="Image" /></p>
+<p>Query模式能够确保仅采用上传文档中的信息进行回答（而不会采用大模型本身的信息）。</p>
+<p>点击Update Workspace，保存设置。点击返回按钮，返回主界面。</p>
+<p>下面，是没有开启文档对话（Chat模式、未上传任何文档）的回答效果。明显的泛泛而谈。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2017.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2017.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2017.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2017.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2017.png"
+        title="Image" /></p>
+<p>现在我们来试试基于文档对话（Query模式、上传1篇文档）的效果吧。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2018.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2018.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2018.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2018.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2018.png"
+        title="Image" /></p>
+<p>点击Show CItations，可以查看引用的数据。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2019.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2019.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2019.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2019.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2019.png"
+        title="Image" /></p>
+<p>你可以对一个话题上传多份文档，以提高回答质量。文档的相关性越高，回答的质量更好。如果你对回答不太满意，也可以尝试重新组织一下问题的文字，或者更换体量更大的本地大模型处理。</p>
+<h2 id="4-chatbox集成">4 ChatBox集成</h2>
+<p>我们的老朋友ChatBox也可以很容易的集成Ollama。将ChatBox升级到1.2.2以上，即可配置Ollama作为后端，方便的使用通义千问大模型进行聊天了。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2020.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2020.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2020.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2020.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2020.png"
+        title="Image" /></p>
+<p>你需要在ChatBox的设置界面中进行选择Ollama作为后端。</p>
+<p>在模型选项卡选择 Ollama 作为AI模型提供方。</p>
+<p>API域名填写 <a href="http://127.0.0.1:11434/" target="_blank" rel="noopener noreffer ">http://127.0.0.1:11434</a></p>
+<p>模型选择 qwen:4b</p>
+<p>保存后即可进行对话。</p>
+<p>下面是我使用Ollama运行Mistral 7B进行对话的示例。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2021.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2021.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2021.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2021.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2021.png"
+        title="Image" /></p>
+<p>ChatBox可以很方便的切换Ollama管理的大语言模型。</p>
+<h2 id="5-总结">5 总结</h2>
+<p>通过今天的教程，我们已经可以不需要进行繁琐的Python环境搭建，就能够方便的在本地运行大语言模型。</p>
+<p>Ollama和AnythingLLM方便的将我们需要的大语言模型运行环境，打包成Windows的通用图形界面，降低了大语言模型本地运行的门槛。同时Ollama可以根据我们的硬件配置自动选择使用显卡(GPU)或者CPU来运行量化好的模型。</p>
+<p>在我们之前的教程中，只能使用CPU来运行量化后的 ChatGLM3模型。使得拥有GPU显卡的用户运行效率偏慢。Ollama很好的解决了这个问题。Ollama使用16位的GGUF量化模型，相对于之前我们介绍的GGML（Int4）量化模型格式，所保存数据精度更高。</p>
+<p>此外，Ollama还支持uncensored llama2模型，可以应用的场景更加广泛。</p>
+<p>目前，Ollama对中文模型的支持还相对有限。除了通义千问，Ollama没有其他更多可用的中文大语言模型。鉴于ChatGLM4更改发布模式为闭源，Ollama短期似乎也不会添加对 ChatGLM模型的支持。</p>
+<p>尽管有一些不足。但是Ollama和AnythingLLM还是帮助我们更加方便的在本地运行属于自己的大语言模型，使得LLM应用对于普通人来说更加触手可及。</p>
+<h2 id="增补教程">【增补教程】</h2>
+<h3 id="a-修改本地存储位置">A. 修改本地存储位置</h3>
+<p>Linux、Window都支持更改ollama模型存放位置。因为Ollama默认把模型下载到C盘，但是大家C盘一般都很小，所以可以在安装完成后修噶一下存储位置。</p>
+<p><strong>Windows直接进入系统环境变量添加就行</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2022.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2022.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2022.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2022.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2022.png"
+        title="Image" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2023.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2023.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2023.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2023.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2023.png"
+        title="Image" /></p>
+<p><strong>Linux环境下</strong></p>
+<ol>
+<li>首先第一步：cd /etc/systemd/system/
+打开配置文件vim ollama.service</li>
+<li>第二步：目录下的environment里面分号隔开添加OLLAMA_MODELS环境变量</li>
+<li>第三部：source ollama.service</li>
+<li>最后重启ollama即可</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2024.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2024.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2024.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2024.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2024.png"
+        title="Image" /></p>
+<blockquote>
+<p>来源：<a href="https://blog.csdn.net/weixin_46124467/article/details/136781232" target="_blank" rel="noopener noreffer ">https://blog.csdn.net/weixin_46124467/article/details/136781232</a></p>
+</blockquote>
+<h3 id="b-模型推荐">B. 模型推荐</h3>
+<p>Ollama目前提供三种向量转化模型，链接如下：</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameter Size</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mxbai-embed-large</td>
+<td>334M</td>
+<td><a href="https://ollama.com/library/mxbai-embed-large" target="_blank" rel="noopener noreffer ">https://ollama.com/library/mxbai-embed-large</a></td>
+</tr>
+<tr>
+<td>nomic-embed-text</td>
+<td>137M</td>
+<td><a href="https://ollama.com/library/nomic-embed-text" target="_blank" rel="noopener noreffer ">https://ollama.com/library/nomic-embed-text</a></td>
+</tr>
+<tr>
+<td>all-minilm</td>
+<td>23M</td>
+<td><a href="https://ollama.com/library/all-minilm" target="_blank" rel="noopener noreffer ">https://ollama.com/library/all-minilm</a></td>
+</tr>
+</tbody>
+</table>
+<p>教程推荐的<strong>nomic-embed-text</strong>是其中一种。</p>
+<p>此外还有名为<strong>mxbai-embed-large</strong>向量转换模型，号称性能超过OpenAI的向量转换模型text-embedding-3-large，大家可以自行下载尝试。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对于部分同学反映Qwen 4B比较笨，可以尝试Qwen 7B模型或者Zephyr 7B模型。Zephyr 7B是在 mistral 7B 模型的基础上微调出来的一个模型。我测试之后发现中文支持还可以。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们可以在 <a href="https://link.zhihu.com/?target=https%3A//ollama.com/library" target="_blank" rel="noopener noreffer ">https://ollama.com/library</a> 中搜索已有我们想要的模型库。以下是一些流行的模型：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>参数</th>
+<th>尺寸</th>
+<th>执行下载</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Llama 2</td>
+<td>7B</td>
+<td>3.8GB</td>
+<td>ollama run llama2</td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td>7B</td>
+<td>4.1GB</td>
+<td>ollama run mistral</td>
+</tr>
+<tr>
+<td>Code Llama</td>
+<td>7B</td>
+<td>3.8GB</td>
+<td>ollama run codellama</td>
+</tr>
+<tr>
+<td>Llama 2 Uncensored</td>
+<td>7B</td>
+<td>3.8GB</td>
+<td>ollama run llama2-uncensored</td>
+</tr>
+<tr>
+<td>Llama 2 13B</td>
+<td>13B</td>
+<td>7.3GB</td>
+<td>ollama run llama2:13b</td>
+</tr>
+<tr>
+<td>Llama 2 70B</td>
+<td>70B</td>
+<td>39GB</td>
+<td>ollama run llama2:70b</td>
+</tr>
+<tr>
+<td>Gemma</td>
+<td>2B</td>
+<td>1.4GB</td>
+<td>ollama run gemma:2b</td>
+</tr>
+<tr>
+<td>Gemma</td>
+<td>7B</td>
+<td>4.8GB</td>
+<td>ollama run gemma:7b</td>
+</tr>
+</tbody>
+</table>
+<p>这里大概列出了 <code>Llama</code>、<code>Mistral</code> 以及 <code>Gemma</code> 我们景见的模型以及参数以及尺寸大小。由图表可以看出 Gemma 2B 模型的尺寸还是比较小的，初学者入门。</p>
+<h3 id="c-手动下载模型导入">C. 手动下载模型导入</h3>
+<p>如果通过 ollama pull / ollama run 等方式拉取（下载）量化模型很慢，可以尝试手动下载gguf模型并导入ollama中。</p>
+<p><strong>导入GGUF模型</strong></p>
+<p>GGUF格式是一种流行的模型格式，被广泛应用于各种机器学习任务中。使用ollama框架导入GGUF模型是一个简单直接的过程，分为几个主要步骤：准备<code>Modelfile</code>、创建Ollama模型和运行模型。下面将逐步详细介绍每个步骤。</p>
+<p><strong>准备工作</strong></p>
+<p>在开始导入模型之前，首先需要准备一个<code>Modelfile</code>。<code>Modelfile</code>是描述如何构建模型的配置文件，它指定了模型权重、参数、提示模板等重要信息。正确设置<code>Modelfile</code>是成功导入模型的关键。</p>
+<p><strong>模型下载</strong></p>
+<p>我在网盘中已经上传了两个模型，zephyr 7b和qwen 7b的gguf文件。你也可以通过其他渠道（huggingface）下载gguf模型。</p>
+<p><strong>步骤1：编写<code>Modelfile</code></strong></p>
+<p>创建<code>Modelfile</code>非常简单。首先，您需要指定模型文件的位置，如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">FROM ./mistral-7b-v0.1.Q4_0.gguf</span><span class="w">
+</span></span></span></code></pre></div><p>如果您的模型需要一个默认的提示模板来正确回答问题，可以在<code>Modelfile</code>中使用<code>TEMPLATE</code>指令来指定：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="l">FROM ./mistral-7b-v0.1.Q4_0.gguf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">TEMPLATE &#34;[INST] {{ .Prompt }} [/INST]&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>这样做可以确保模型在接收到输入时能够正确理解和处理。</p>
+<p><strong>步骤2：创建Ollama模型</strong></p>
+<p>拥有<code>Modelfile</code>后，下一步是使用以下命令创建模型：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ollama create **example** -f Modelfile
+</span></span></code></pre></div><p>此命令会根据<code>Modelfile</code>中的指定，创建一个新的名为<strong>example</strong>的ollama模型实例。</p>
+<p><strong>步骤3：运行模型</strong></p>
+<p>创建模型后，可以通过<code>ollama run</code>命令来测试模型是否正常工作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ollama run **example** <span class="s2">&#34;What is your favourite condiment?&#34;</span>
+</span></span></code></pre></div><p>这个命令会将文本输入传递给模型，并输出模型的回答。通过这种方式，您可以验证模型是否已正确导入和配置。</p>
+<h3 id="d-anythingllm的api用法">D. AnythingLLM的API用法</h3>
+<p>如果你想基于AnythingLLM搭建自己的知识库服务，你可以使用AnythingLLM的API。</p>
+<p>启动AnythingLLM之后，您可以在本地的 <code>localhost:3001/api/docs</code>地址找到API文档。</p>
+<p>AnythingLLM支持完整的开发者API，可以用该API来管理、更新、或者与工作空间进行聊天。</p>
+<p>使用AnythingLLM API与已经配置好的知识库聊天非常简单，代码如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X <span class="s1">&#39;POST&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s1">&#39;http://localhost:3001/api/v1/workspace/**document**/chat&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -H <span class="s1">&#39;accept: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -H <span class="s1">&#39;Authorization: Bearer BN47Z6S-BSZM6KA-MGY1R17-W926FBZ&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;{
+</span></span></span><span class="line"><span class="cl"><span class="s1">  &#34;message&#34;: &#34;什么是出口转内销&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">  &#34;mode&#34;: &#34;query | chat&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span></code></pre></div><p>其中**<code>document</code>**是Workspace的SLUG。</p>
+<p>如果你习惯用Python，应该这样写（通过requests库）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer BN47Z6S-BSZM6KA-MGY1R17-W926FBZ&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;What is AnythingLLM?&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;chat&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001/api/v1/workspace/**document**/chat&#39;</span><span class="p">,</span>\
+</span></span><span class="line"><span class="cl"> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><p>其中**<code>document</code>**是Workspace的SLUG。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Python如何调用AnythingLLM API？</p>
+<p>**使用requests库。**AnythingLLM暂时没有python库。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">https://**curlconverter.com**/ 
+</span></span></code></pre></div><p>这个工具网站可以直接将复制网页的curl转为python的request请求代码。</p>
+<h3 id="e-docker部署ollama和anythingllm">E. Docker部署Ollama和AnythingLLM</h3>
+<p>为了方便将Ollama和AnythingLLM部署成为服务，我们需要使用Docker来运行他们。</p>
+<p><strong>Ollama Docker 如何安装</strong></p>
+<p><strong>1.docker部署ollama</strong></p>
+<p><strong>1.1.CPU模式</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -v /opt/ai/ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+</span></span></code></pre></div><p><strong>1.2.GPU模式（需要有NVIDIA显卡支持）</strong></p>
+<p><strong>1.2.1.安装英伟达容器工具包（以Ubuntu22.04为例）</strong></p>
+<p>其他系统请参考：<a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/arch-overview.html" target="_blank" rel="noopener noreffer ">英伟达官方文档</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.配置apt源</span>
+</span></span><span class="line"><span class="cl">curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey <span class="p">|</span> sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="o">&amp;&amp;</span> curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sed <span class="s1">&#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39;</span> <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.更新源</span>
+</span></span><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.安装工具包</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install -y nvidia-container-toolkit
+</span></span></code></pre></div><p><strong>1.2.2.docker使用GPU运行ollama</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --gpus all -d -v /opt/ai/ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+</span></span></code></pre></div><p><strong>2.docker部署ollama web ui</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d -p 8080:8080 -add-host<span class="o">=</span>host.docker.internal:host-gateway -name ollama-webui -restart always ghcr.io/ollama-webui/ollama-webui:main
+</span></span></code></pre></div><p><strong>3.使用docker中的ollama下载并运行AI模型（示例为阿里通义千问4b-chat）</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it ollama ollama run qwen:4b-chat
+</span></span></code></pre></div><p><strong>AnythingLLM Docker 如何安装</strong></p>
+<p>AnythingLLM 的开发公司 Mintplex Labs 提供的官方 Docker 镜像。通过下面的指令可以启动AnythingLLM的Docker服务：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker pull mintplexlabs/anythingllm:master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">STORAGE_LOCATION</span><span class="o">=</span><span class="s2">&#34;/var/lib/anythingllm&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>mkdir -p <span class="nv">$STORAGE_LOCATION</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>touch <span class="s2">&#34;</span><span class="nv">$STORAGE_LOCATION</span><span class="s2">/.env&#34;</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>docker run -d -p 3001:3001 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v <span class="si">${</span><span class="nv">STORAGE_LOCATION</span><span class="si">}</span>:/app/server/storage <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v <span class="si">${</span><span class="nv">STORAGE_LOCATION</span><span class="si">}</span>/.env:/app/server/.env <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-e <span class="nv">STORAGE_DIR</span><span class="o">=</span><span class="s2">&#34;/app/server/storage&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>mintplexlabs/anythingllm:master
+</span></span></code></pre></div><p>访问 http://localhost:3001 可以打开AnythingLLM的Web GUI ，操作过程和本地桌面版基本相同。</p>
+<blockquote>
+<p>来源 <a href="https://blog.csdn.net/qq_38593436/article/details/136407171" target="_blank" rel="noopener noreffer ">https://blog.csdn.net/qq_38593436/article/details/136407171</a></p>
+</blockquote>
+<h3 id="f-向量库管理">F. 向量库管理</h3>
+<p>Vector Admin GUI是一个强大向量数据库管理工具，提供友好的Web图形化操作界面，用于可视化和管理 AnythingLLM 存储的向量。</p>
+<p>安装过程涉及利用 Mintplex Labs 提供的 Docker 容器：一个用于 Vector Admin 应用程序，另一个用于 PostgreSQL 数据库，该数据库存储应用程序的配置和聊天历史记录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/Mintplex-Labs/vector-admin.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> vector-admin/docker/
+</span></span><span class="line"><span class="cl">cp .env.example .env
+</span></span></code></pre></div><p>我们修改 <code>.env</code> 文件，将服务器端口从 3001 调整为 3002，避免与 AnythingLLM 已使用的端口发生冲突。在Linux系统上，还需要为PostgreSQL连接字符串设置默认的Docker网关IP地址。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">SERVER_PORT</span><span class="o">=</span><span class="m">3002</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DATABASE_CONNECTION_STRING</span><span class="o">=</span><span class="s2">&#34;postgresql://vectoradmin:password@127.0.0.1:5433/vdbms&#34;</span>
+</span></span></code></pre></div><p>此外，我们配置 SYS_EMAIL 和 SYS_PASSWORD 变量来定义第一个 GUI 连接的凭据。</p>
+<p>鉴于默认端口的更改，我们还在 <code>docker-compose.yaml</code> 和 <code>Dockerfile</code> 中反映了此修改。</p>
+<p>配置完后端之后，我们将注意力转向前端安装。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ../frontend/
+</span></span><span class="line"><span class="cl">cp .env.example .env.production
+</span></span></code></pre></div><p>在 <code>.env.production</code> 文件中，我们更新端口以与 Docker 网关保持一致。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">GENERATE_SOURCEMAP</span><span class="o">=</span><span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="nv">VITE_API_BASE</span><span class="o">=</span><span class="s2">&#34;http://127.0.0.1:3002/api&#34;</span>
+</span></span></code></pre></div><p>完成这些设置后，我们构建并启动 Docker 容器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker compose up -d --build vector-admin
+</span></span></code></pre></div><p>通过 http://localhost:3002 访问 GUI 非常简单。初始连接使用 <code>.env</code> 文件中指定的 SYS_EMAIL 和 SYS_PASSWORD 值。仅在首次登录时需要这些凭据，以从 GUI 创建主管理员用户并开始配置该工具。</p>
+<h3 id="g-什么是量化模型">G. 什么是量化模型</h3>
+<p>量化是一种减小模型大小和提高推理性能的技术，它通过降低大语言模型内存储的数值精度来实现。简单来说就是把π(3.141592653….)简化成3.1415927或者3.14的过程。</p>
+<p>不同的量化级别，代表着不同的精度。我们常用的量化精度有<code>q4_0</code> 、<code>q4_1</code> 、<code>q5_0</code> 、<code>q5_1</code> 等等 。量化模型从最低精度到最高精度排列如下：</p>
+<ul>
+<li><code>q2_K</code>: 提供最高压缩率的量化级别，但可能会对模型的准确度和性能产生较大影响。</li>
+<li><code>q3_K</code>: 相比于<code>q2_K</code>，提供了更好的平衡，适用于对准确度要求较高的场景。</li>
+<li><code>q3_K_S</code>: 是<code>q3_K</code>的一个变体，专为特定的模型结构优化。</li>
+<li><code>q3_K_M</code>: 针对中等大小的模型提供了优化，介于<code>q3_K_S</code>和<code>q3_K_L</code>之间。</li>
+<li><code>q3_K_L</code>: 专为大型模型设计，提供了相对较高的准确度。</li>
+<li><code>q4_0</code> (推荐): 提供了一个良好的平衡点，推荐用于大多数模型。</li>
+<li><code>q4_1</code>: 与<code>q4_0</code>相似，但略微调整了量化策略，适用于特定场景。</li>
+<li><code>q4_K</code>: 适用于需要细粒度量化控制的高级用户。</li>
+<li><code>q4_K_S</code>: 为小型模型提供了针对性的优化。</li>
+<li><code>q4_K_M</code>: 针对中型模型进行了优化，比<code>q4_K_S</code>提供更广泛的适用性。</li>
+<li><code>q5_0</code>: 在保持较高压缩率的同时，尽量减少对性能的影响。</li>
+<li><code>q5_1</code>: 与<code>q5_0</code>类似，但进行了细微的调整以适应不同的模型需求。</li>
+<li><code>q5_K</code>: 提供了更多的量化控制选项，适合需要精细调整的场景。</li>
+<li><code>q5_K_S</code>: 专为小型模型设计，旨在在压缩率和性能之间找到最佳平衡。</li>
+<li><code>q5_K_M</code>: 为中型模型量身定制，提供了优秀的压缩和性能平衡。</li>
+<li><code>q6_K</code>: 介于<code>q5_K_M</code>和<code>q8_0</code>之间，为特定模型提供了更多的量化选项。</li>
+<li><code>q8_0</code>: 在所有量化级别中提供了相对较低的压缩率，但保持了较好的性能和准确度。</li>
+<li><code>f16</code>: 半精度浮点格式，提供了与全精度浮点相比的显著大小减少，同时基本保持了模型性能。</li>
+</ul>
+<p>选择合适的量化级别需要考虑模型的大小、性能需求以及最终部署的环境。我们推荐从<code>q4_0</code>开始试验，并根据模型的具体表现进行调整。</p>
+<h3 id="h-什么是chunk分块如何设置chunk">H. <strong>什么是</strong>chunk（分块）如何设置chunk</h3>
+<p>在构建RAG这类基于LLM的应用程序中，分块（chunking）是将大块文本分解成小段的过程。当我们使用LLM embedding内容时，这是一项必要的技术，可以帮助我们优化从向量数据库被召回的内容的准确性。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2025.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2025.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2025.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2025.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2025.png"
+        title="Image" /></p>
+<p>当嵌入一个<strong>句子</strong>时，生成的向量集中在句子的特定含义上。当与其他句子Embedding进行比较时，自然会在这个层次上进行比较。这也意味着Embedding可能会错过在段落或文档中找到的更广泛的上下文信息。</p>
+<p>在确定最佳分块策略时，有几个因素会对我们的选择起到至关重要的影响。以下是一些事实我们需要首先记在心里：</p>
+<ol>
+<li><strong>被索引内容的性质是什么?</strong> 这可能差别会很大，是处理较长的文档(如文章或书籍)，还是处理较短的内容(如微博或即时消息)？答案将决定哪种模型更适合您的目标，从而决定应用哪种分块策略。</li>
+<li><strong>您使用的是哪种Embedding模型，它在多大的块大小上表现最佳？<strong>例如，sentence-transformer[1]模型在单个句子上工作得很好，但像</strong>text- embedt-ada -002</strong>[2]这样的模型在包含256或512个tokens的块上表现得更好。</li>
+<li>**你对用户查询的长度和复杂性有什么期望？**用户输入的问题文本是简短而具体的还是冗长而复杂的？这也直接影响到我们选择分组内容的方式，以便在嵌入查询和嵌入文本块之间有更紧密的相关性。</li>
+<li><strong>如何在您的特定应用程序中使用检索结果？</strong> 例如，它们是否用于<strong>语义搜索</strong>、<strong>问答</strong>、<strong>摘要</strong>或<strong>其他目的</strong>？例如，和你底层连接的LLM是有直接关系的，LLM的tokens限制会让你不得不考虑分块的大小。</li>
+</ol>
+<p><strong>简单来说，长文本Chunk可以设置大一点（512），短文本可以设置小一点（128）。</strong></p>
+<h3 id="i-如何设置max-context-snippets">I. 如何设置Max Context Snippets</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2026.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2026.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2026.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2026.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2026.png"
+        title="Image" /></p>
+<p>Max Context Snippets（最大参考上下文）表示大模型参考的文本切片的数量。通常这个数字越大，回答的质量就越高。</p>
+<p>因此，你可以通过调高Max Context Snippets到8、12、16来获得质量更好的答案。</p>
+<p>那么什么是文本切片呢，其实就是前面我们设置的embedding模型的chunk。</p>
+<p>如果我们的chunk设置为256，Max Context Snippets设置为4（也就是默认值），那么4个切片（就是4个chunk）相当于占用4 * 256 = 1024 =1k token。我通常设置为10，那么就会占用2.5k的token。通常本地大模型能够处理的token上限是8k（同时包含问题和回答），因此我们提交给大模型的Context Snippets不能太大，太大就没有可用token计算答案了。</p>
+<p><strong>结论：默认的4好像对中文不友好（因为文字结构的原因），起码设到8，我通常设置10（上限为12）。</strong></p>
+<h3 id="j-知识库的内存显存需求">J. 知识库的内存/显存需求</h3>
+<p>很多朋友部确定自己的硬件是否支持运行本地大语言模型。</p>
+<p>如果你没有nvidia的显卡（例如RTX1660、2080、3060ti这种），那么就只能考虑用CPU运行。</p>
+<p>一种简单估算方式为：</p>
+<pre tabindex="0"><code>FP16: 内存/显存占用(GB) = 模型量级 x 2
+Int4: 内存/显存占用(GB) = 模型量级 x 0.75
+</code></pre><p>Ollama提供的模型基本上都是Int4量化模型（少量Int5），所以如果选择内存运行的话，<strong>基本上8G可以（勉强）跑7B，16G可以（勉强）跑14B。</strong></p>
+<p>如果选择GPU运行的话，对<strong>系统内存和显卡显存都有要求</strong>。如果想要顺利在GPU运行本地模型的 <strong>FP16</strong> 版本，你至少需要以下的硬件配置，来保证<strong>稳定连续对话：</strong></p>
+<ul>
+<li>ChatGLM3-6B &amp; LLaMA-7B-Chat 等 7B模型
+<ul>
+<li>最低显存要求: 14GB</li>
+<li>推荐显卡: RTX 4080</li>
+</ul>
+</li>
+<li>Qwen-14B-Chat 等 14B模型
+<ul>
+<li>最低显存要求: 30GB</li>
+<li>推荐显卡: V100</li>
+</ul>
+</li>
+<li>Yi-34B-Chat 等 34B模型
+<ul>
+<li>最低显存要求: 69GB</li>
+<li>推荐显卡: A100</li>
+</ul>
+</li>
+<li>Qwen-72B-Chat 等 72B模型
+<ul>
+<li>最低显存要求: 145GB</li>
+<li>推荐显卡：多卡 A100 以上</li>
+</ul>
+</li>
+</ul>
+<p>以上数据仅为估算，实际情况以 <strong>nvidia-smi</strong> 占用为准。 请注意，如果使用最低配置，仅能保证代码能够运行，但运行速度较慢，体验不佳。同时，Embedding 模型将会占用 1-2G 的显存，历史记录最多会占用数GB 的显存，因此，需要多冗余一些显存。</p>
+<p><strong>用显卡跑模型对电脑内存还有要求吗？</strong></p>
+<p>**内存要求至少应该比模型运行的显存大。**例如，运行ChatGLM3-6B <code>FP16</code> 模型，显存占用13G，我可以8G内存+16G显存运行吗？**不可以。**你至少要使用使用16G以上内存，否则会出现模型加载问题。</p>
+<p><strong>那么，跑量化模型对CPU有要求吗？</strong></p>
+<p>**几乎没有。**Ollama理论上支持所有带有AVX/AVX2指令集的CPU。这意味着酷睿2代（i3/i5-2xxx等）以上的CPU就可以运行Ollama驱动的大模型。</p>
+<p>当然，我没有实测那么老的CPU，但是2015年以后出产的台式机和笔记本基本确认都是可以运行的。</p>
+<h3 id="k-管理本地向量数据库">K. 管理本地向量数据库</h3>
+<p>现在市面上的向量数据库众多，主流的向量数据库对比如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>向量数据库</th>
+<th>URL</th>
+<th>GitHub Star</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chroma</td>
+<td><a href="https://github.com/chroma-core/chroma" target="_blank" rel="noopener noreffer ">https://github.com/chroma-core/chroma</a></td>
+<td>7.4K</td>
+<td>Python</td>
+</tr>
+<tr>
+<td>milvus</td>
+<td><a href="https://github.com/milvus-io/milvus" target="_blank" rel="noopener noreffer ">https://github.com/milvus-io/milvus</a></td>
+<td>21.5K</td>
+<td>Go/Python/C++</td>
+</tr>
+<tr>
+<td>pinecone</td>
+<td><a href="https://www.pinecone.io/" target="_blank" rel="noopener noreffer ">https://www.pinecone.io/</a></td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>qdrant</td>
+<td><a href="https://github.com/qdrant/qdrant" target="_blank" rel="noopener noreffer ">https://github.com/qdrant/qdrant</a></td>
+<td>11.8K</td>
+<td>Rust</td>
+</tr>
+<tr>
+<td>typesense</td>
+<td><a href="https://github.com/typesense/typesense" target="_blank" rel="noopener noreffer ">https://github.com/typesense/typesense</a></td>
+<td>12.9K</td>
+<td>C++</td>
+</tr>
+<tr>
+<td>weaviate</td>
+<td><a href="https://github.com/weaviate/weaviate" target="_blank" rel="noopener noreffer ">https://github.com/weaviate/weaviate</a></td>
+<td>6.9K</td>
+<td>Go</td>
+</tr>
+</tbody>
+</table>
+<p>我推荐初学者采用anythingllm内置的LanceDB用来管理向量数据库。但是，一旦进入实务（生产）环境，需要实现向量数据库的管理，你就需要安装独立的向量数据库了。</p>
+<p>我推荐使用Chroma作为独立的向量数据库，安装和管理都比较简单。</p>
+<p><strong>Chroma介绍</strong></p>
+<p>Chroma的目标是帮助用户更加便捷地构建大模型应用，更加轻松的将知识（knowledge）、事实（facts）和技能（skills）等我们现实世界中的文档整合进大模型中。</p>
+<p>Chroma提供的工具：</p>
+<ul>
+<li>存储文档数据和它们的元数据：store embeddings and their metadata</li>
+<li>嵌入：embed documents and queries</li>
+<li>搜索： search embeddings</li>
+</ul>
+<p>Chroma的设计优先考虑：</p>
+<ul>
+<li>足够简单并且提升开发者效率：simplicity and developer productivity</li>
+<li>搜索之上再分析：analysis on top of search</li>
+<li>追求快（性能）： it also happens to be very quick</li>
+</ul>
+<p><strong>Chroma安装</strong></p>
+<p>安装Python环境后，只需要一行指令就可以安装Chroma</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install chromadb
+</span></span></code></pre></div><ul>
+<li>
+<p>可选包</p>
+<p>如果你只需要使用 Chroma 的客户端功能，你可以选择安装轻量级的客户端库 <code>chromadb-client</code>。这个库的安装过程与 Chroma 的安装过程相同，只是包名不同。在命令行工具中输入以下命令进行安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pip</span> <span class="n">install</span> <span class="n">chromadb</span><span class="o">-</span><span class="n">client</span>
+</span></span></code></pre></div></li>
+</ul>
+<p><strong>Chroma调用</strong></p>
+<p>这里给出一个示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">chromadb</span>
+</span></span><span class="line"><span class="cl"><span class="n">chroma_client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">collection</span> <span class="o">=</span> <span class="n">chroma_client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;my_collection&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;This is a document about engineer&#34;</span><span class="p">,</span> <span class="s2">&#34;This is a document about steak&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;doc1&#34;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;doc2&#34;</span><span class="p">}],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;id1&#34;</span><span class="p">,</span> <span class="s2">&#34;id2&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;Which food is the best?&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</span></span></code></pre></div><p>Chroma一般是直接作为内存数据库使用，但是也可以进行持久化存储。</p>
+<p>在初始化Chroma Client时，使用PersistentClient：</p>
+<p><code>client = chromadb.PersistentClient(path=&quot;/Users/yourname/xxxx&quot;)</code></p>
+<p>这样在运行代码后，在你指定的位置会新建一个chroma.sqlite3文件。</p>
+<p><strong>启动Chroma服务</strong></p>
+<p>打开一个CMD窗口，启动 Chroma 服务器。这可以通过运行以下命令实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># chroma run --path /db_path</span>
+</span></span><span class="line"><span class="cl">chroma run --path d:<span class="se">\m</span>y_chromadb<span class="se">\
+</span></span></span></code></pre></div><p><strong>AnythingLLM连接Chroma</strong></p>
+<p>接下来，我们选择 Chroma 向量数据库，使用 URL <a href="https://link.zhihu.com/?target=http%3A//127.0.0.1%3A8000" target="_blank" rel="noopener noreffer ">http://127.0.0.1:8000</a>。API handler/API key可以留空。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://pic2.zhimg.com/80/v2-3ffb816690855bdce7b90980d464c8d5_720w.webp"
+        data-srcset="https://pic2.zhimg.com/80/v2-3ffb816690855bdce7b90980d464c8d5_720w.webp, https://pic2.zhimg.com/80/v2-3ffb816690855bdce7b90980d464c8d5_720w.webp 1.5x, https://pic2.zhimg.com/80/v2-3ffb816690855bdce7b90980d464c8d5_720w.webp 2x"
+        data-sizes="auto"
+        alt="https://pic2.zhimg.com/80/v2-3ffb816690855bdce7b90980d464c8d5_720w.webp"
+        title="https://pic2.zhimg.com/80/v2-3ffb816690855bdce7b90980d464c8d5_720w.webp" /></p>
+<p>如何备份、管理Chroma的数据</p>
+<p>备份比较简单，复制d:\my_chromadb\下的sqlite3数据库文件就可以了。管理的话可以用HeidiSQL进行简单管理。向量层面的管理可以采用Vector Admin工具或者。</p>
+<p>更多复杂的Chroma操作请参考： <a href="https://cloud.tencent.com/developer/article/2407496" target="_blank" rel="noopener noreffer ">https://cloud.tencent.com/developer/article/2407496</a></p>
+<h3 id="l-注册在线向量数据">L. 注册在线向量数据</h3>
+<p>Milvus 是一款开源向量数据库，提供在线版本的向量数据库服务，在线服务的名称叫做Zilliz。可以通过下面这个地址注册他的免费版本，免费版最多支持两个数据集合（Collection）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://zilliz.com/zilliz-cloud-free-tier
+</span></span></code></pre></div><p>注册完成后，你需要先创建一个cluster（集群）。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2027.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2027.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2027.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2027.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2027.png"
+        title="Image" /></p>
+<p>免费账户没有太多可选项，按照默认创建即可。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2028.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2028.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2028.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2028.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2028.png"
+        title="Image" /></p>
+<p>复制上面的Endpoint URL和API key到AnythingLLM中就可以使用在线的向量数据库了。</p>
+<p><strong>提示：更换向量数据库后，需要对文档进行重新向量化！</strong></p>
+<h3 id="qa-常见错误汇总">Q&amp;A 常见错误汇总</h3>
+<ol>
+<li><strong>AnythingLLM 无法连接 Ollama</strong></li>
+</ol>
+<p>提问时，AnythingLLM报错，提示如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2029.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2029.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2029.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2029.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2029.png"
+        title="Image" /></p>
+<p>原因：Ollama崩了，或者内存不足。</p>
+<p>解决方案：</p>
+<ol>
+<li>在CMD窗口运行 <code>ollama serve</code> ，再试</li>
+<li>重启，再试</li>
+<li>更新Ollama和AnythingLLM到最新版本，再试</li>
+<li>重新下载Ollama模型，再试</li>
+</ol>
+<p>出现这个问题，一般是由于小马拉大车（小内存跑大量级模型）造成的，再加上Ollama目前处于Preview状态，并不是很稳。</p>
+<p><strong>2. AnythingLLM 安装完成后打不开（不显示主界面）</strong></p>
+<p>首先尝试重启。AnythingLLM 界面看起来很简单，但其实后面跑了一堆服务，只要有一个衔接不上，就很容易崩。</p>
+<p>如果重启不能解决，需要<strong>重新安装官方（非精简的）Windows系统</strong>。如果你安装的就是官方系统，也可以尝试进行系统还原。</p>
+<p>新安装的系统可以保证AnythingLLM的服务不与其他已经存在的服务冲突。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li><strong>文档Embeding失败</strong></li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.jpeg"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.jpeg, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.jpeg 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.jpeg 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled.jpeg"
+        title="Image" /></p>
+<p>原因：格式问题、Ollama崩了、模型崩了、向量数据库崩了</p>
+<p>解决方案</p>
+<ol>
+<li>
+<p>尝试转换文档的格式，例如将txt复制到word中，再次添加。或者将word导出为pdf，再次添加。AnythingLLM对utf-8 无bom的txt文件兼容性最佳，其他的doc、xls、ppt等格式，由于office版本众多，也可能出现兼容性问题，建议转存为最新版本的office文档格式，再重新尝试。</p>
+</li>
+<li>
+<p>另外，ollama管理的向量转换模型（nomic-embed-text）也可能出现错误，可以尝试删除向量转换模型后，重新通过ollama下载。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先删除原模型</span>
+</span></span><span class="line"><span class="cl">ollama rm nomic-embed-text
+</span></span><span class="line"><span class="cl"><span class="c1"># 再重新下载向量模型</span>
+</span></span><span class="line"><span class="cl">ollama pull nomic-embed-text
+</span></span></code></pre></div></li>
+<li>
+<p>本地的lanceDB损坏或崩溃，先删除所有向量化文档，重试；如果不行，删除workspace，重试；还不行，卸载anythingllm并重新安装。对于生产环境，建议安装独立的向量数据库，例如Chroma，或者使用在线数据库，例如Pinecone。</p>
+</li>
+<li>
+<p>你在使用过程中，调整了embedding的chunk大小，也可能导致后面添加文档失败，可以删除workspace后，重新创建并添加文档。</p>
+</li>
+<li>
+<p><strong>AI答非所问</strong></p>
+</li>
+</ol>
+<p>首先，修改chunk大小，从512开始往小改，最小为128（太小了反而性能不好）。然后重新添加文档并进行向量化（记得删除之前添加的文档），最后重试问答效果。</p>
+<p>其次，修改Max Context Snippets参数（默认为4），根据你的电脑性能，调整为8、12等值（我经常设为10）</p>
+<p>最后，尝试量级更大的模型，例如从qwen 4b替换到qwen 7b或者更大的模型；尝试更新的模型，例如尝试zyphyr、gemma等新模型</p>
+<ol>
+<li><strong>为什么总是给我飙英文</strong></li>
+</ol>
+<p>很多朋友采用中文提问，却常常得到英文回答。这是因为大模型的训练材料中英文居多，开发者又没有优化它采用中文回答导致的。通常出现在国外发布的大模型上，但是偶尔也出现在国内的大模型中。</p>
+<p>你可以重新问一遍，<strong>并在问题后面追加“用中文回答我”</strong>，一般就能让大模型改回使用中文。</p>
+<p>如果经常性的出现英文答案，也可以尝试<strong>在Prompt中添加“Always reply the answer in Chinese language.”</strong></p>
+<ol>
+<li><strong>回答还行，但是点开引用（Citations）显示的乱码</strong></li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2030.png"
+        data-srcset="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2030.png, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2030.png 1.5x, /images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2030.png 2x"
+        data-sizes="auto"
+        alt="/images/%E5%88%A9%E7%94%A8AI%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0WORD%E5%92%8CPDF%E6%96%87%E6%A1%A3%20%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/Untitled%2030.png"
+        title="Image" /></p>
+<p>你上传的文档（doc、txt等）的编码（通常是gb2312/gbk）AI可以读懂，但是anythingllm的显示界面不认识这个编码。可以不用管。如果很介意，将文档另存为utf-8的txt格式，重新上传即可。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-17</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" data-title="利用AI解读本地WORD和PDF文档 构建自有知识库" data-hashtags="Langchain,知识库,RAG,AI,Ollama"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" data-hashtag="Langchain"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" data-title="利用AI解读本地WORD和PDF文档 构建自有知识库"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" data-title="利用AI解读本地WORD和PDF文档 构建自有知识库"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/" data-title="利用AI解读本地WORD和PDF文档 构建自有知识库"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/langchain/">Langchain</a>,&nbsp;<a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/">知识库</a>,&nbsp;<a href="/tags/rag/">RAG</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/ollama/">Ollama</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" class="prev" rel="prev" title="AI自动写稿 利用ChatGLM3和Python自动输出长文本"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>AI自动写稿 利用ChatGLM3和Python自动输出长文本</a>
+            <a href="/posts/langchain-chatchat-%E6%90%AD%E5%BB%BA%E9%97%AE%E7%AD%94%E7%9F%A5%E8%AF%86%E5%BA%93/" class="next" rel="next" title="Langchain Chatchat 搭建问答知识库">Langchain Chatchat 搭建问答知识库<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">码钉泥的编程世界 | 哔哩哔哩教程</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://martins.nom.za" target="_blank">码钉泥</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,66 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Martin&#39;s Coding World</title>
+        <link>http://localhost:1313/</link>
+        <description>码码钉泥的编程世界</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
+            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Fri, 17 May 2024 11:31:36 &#43;0800</lastBuildDate>
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Docker快速入门</title>
+    <link>http://localhost:1313/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Fri, 17 May 2024 11:31:36 &#43;0800</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[随着对大语言模型的深度使用，我们现在需要使用一些更加复杂的工具。这些工具并不是可以支持原生的Windows运行环境。为了能够在Windows上方便地使用这些软件或框架集，我们需要安装一套功能非常强大的运行环境，这个运行环境叫做Docker。]]></description>
+</item>
+<item>
+    <title>语言模型最重要的15个概念</title>
+    <link>http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/</link>
+    <pubDate>Wed, 01 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/</guid>
+    <description><![CDATA[今天我们来给大家补课，我们在之前的教程中，带领大家搭建了本地的大语言模型服务。但是对于很多观众而言。大语言模型相关的一些技术概念仍然晦涩难懂，今天我们就一次性为大家解读清楚LLM最重要的15个概念。]]></description>
+</item>
+<item>
+    <title>Langchain Chatchat 搭建问答知识库</title>
+    <link>http://localhost:1313/posts/langchain-chatchat-%E6%90%AD%E5%BB%BA%E9%97%AE%E7%AD%94%E7%9F%A5%E8%AF%86%E5%BA%93/</link>
+    <pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/langchain-chatchat-%E6%90%AD%E5%BB%BA%E9%97%AE%E7%AD%94%E7%9F%A5%E8%AF%86%E5%BA%93/</guid>
+    <description><![CDATA[Langchain Chatchat是一款非常方便的离线大语言模型知识库管理软件。]]></description>
+</item>
+<item>
+    <title>利用AI解读本地WORD和PDF文档 构建自有知识库</title>
+    <link>http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/</link>
+    <pubDate>Sun, 17 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/%E5%88%A9%E7%94%A8ai%E8%A7%A3%E8%AF%BB%E6%9C%AC%E5%9C%B0word%E5%92%8Cpdf%E6%96%87%E6%A1%A3-%E6%9E%84%E5%BB%BA%E8%87%AA%E6%9C%89%E7%9F%A5%E8%AF%86%E5%BA%93/</guid>
+    <description><![CDATA[本教程带领大家使用 Ollama + Qwen（通义千问大语言模型）+ AnythingLLM 搭建本地知识库，实现手搓 AI+专家系统。]]></description>
+</item>
+<item>
+    <title>AI自动写稿 利用ChatGLM3和Python自动输出长文本</title>
+    <link>http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/</link>
+    <pubDate>Sun, 17 Dec 2023 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/</guid>
+    <description><![CDATA[本教程介绍了如何使用ChatGLM3和Python实现自动撰写稿件，提高写作效率。涵盖了本地大语言模型的优势、自动输出的局限性、长度限制问题以及如何通过设置系统提示词和对话结构来优化AI写作流程。]]></description>
+</item>
+<item>
+    <title>AI本地聊天工具 如何使用Chatbox进行AI对话</title>
+    <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/</link>
+    <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/</guid>
+    <description><![CDATA[大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。]]></description>
+</item>
+<item>
+    <title>无需显卡 利用chatglm3-6b来搭建自己的本地大源模型</title>
+    <link>http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</link>
+    <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</guid>
+    <description><![CDATA[怎么样搭建一个属于自己的AI大语言模型应用呢？今天我们就利用chatglm3-6b来搭建自己的本地大源模型。]]></description>
+</item>
+</channel>
+</rss>

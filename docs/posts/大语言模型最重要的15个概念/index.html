@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>语言模型最重要的15个概念 - Martin&#39;s Coding World</title><meta name="Description" content="码码钉泥的编程世界"><meta property="og:url" content="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/">
+  <meta property="og:site_name" content="Martin&#39;s Coding World">
+  <meta property="og:title" content="语言模型最重要的15个概念">
+  <meta property="og:description" content="今天我们来给大家补课，我们在之前的教程中，带领大家搭建了本地的大语言模型服务。但是对于很多观众而言。大语言模型相关的一些技术概念仍然晦涩难懂，今天我们就一次性为大家解读清楚LLM最重要的15个概念。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-01T00:00:00+00:00">
+    <meta property="article:tag" content="科普">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="概念">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="LLM">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="语言模型最重要的15个概念">
+  <meta name="twitter:description" content="今天我们来给大家补课，我们在之前的教程中，带领大家搭建了本地的大语言模型服务。但是对于很多观众而言。大语言模型相关的一些技术概念仍然晦涩难懂，今天我们就一次性为大家解读清楚LLM最重要的15个概念。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/" /><link rel="prev" href="http://localhost:1313/posts/langchain-chatchat-%E6%90%AD%E5%BB%BA%E9%97%AE%E7%AD%94%E7%9F%A5%E8%AF%86%E5%BA%93/" /><link rel="next" href="http://localhost:1313/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "语言模型最重要的15个概念",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5\/"
+        },"genre": "posts","keywords": "科普, Python, 概念, AI, LLM","wordcount":  5033 ,
+        "url": "http:\/\/localhost:1313\/posts\/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5\/","datePublished": "2024-05-01T00:00:00+00:00","dateModified": "2024-05-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "码钉泥"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/books/"> 电子书 </a><a class="menu-item" href="/gpus/"> 显卡推荐 </a><a class="menu-item" href="/package/"> 懒人包 </a><a class="menu-item" href="/service/"> 付费服务 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 存档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/books/" title="">电子书</a><a class="menu-item" href="/gpus/" title="">显卡推荐</a><a class="menu-item" href="/package/" title="">懒人包</a><a class="menu-item" href="/service/" title="">付费服务</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">存档</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">语言模型最重要的15个概念</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://martins.nom.za" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>码钉泥</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%A6%82%E5%BF%B5/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>概念</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-01">2024-05-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5033 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#神经网络neural-networks想象成一种模仿人脑工作方式的计算系统通过大量数据学习如何执行任务">神经网络（Neural Networks）：想象成一种模仿人脑工作方式的计算系统，通过大量数据学习如何执行任务</a></li>
+    <li><a href="#transformer模型一种基于注意力机制的模型广泛应用于处理序列数据">Transformer模型：一种基于注意力机制的模型，广泛应用于处理序列数据</a></li>
+    <li><a href="#生成式模型generative-models能够创建新内容如文本的模型">生成式模型（Generative Models）：能够创建新内容（如文本）的模型</a></li>
+    <li><a href="#参数parameters模型中的变量通过训练过程调整以优化性能">参数（Parameters）：模型中的变量，通过训练过程调整以优化性能。</a></li>
+    <li><a href="#量化模型low-bit-quantization将transformer模型参数量化到8位16位甚至更低位宽的表示">量化模型（Low-Bit Quantization）：将Transformer模型参数量化到8位、16位甚至更低位宽的表示</a></li>
+    <li><a href="#上下文context模型在生成或理解语言时考虑的周围单词或句子">上下文（Context）：模型在生成或理解语言时考虑的周围单词或句子</a></li>
+    <li><a href="#上下文长度context-length模型在生成或理解文本时能够考虑的上下文信息的最大长度">上下文长度（Context Length）：模型在生成或理解文本时能够考虑的上下文信息的最大长度</a></li>
+    <li><a href="#大型语言模型llms通过transformer模型分析海量的文本数据来深入理解并运用人类语言的一类模型">大型语言模型（LLMs）：通过Transformer模型分析海量的文本数据来深入理解并运用人类语言的一类模型。</a></li>
+    <li><a href="#预训练pre-training在大量数据上训练模型以学习通用的输出">预训练（Pre-training）：在大量数据上训练模型以学习通用的输出</a></li>
+    <li><a href="#微调fine-tuning在预训练模型的基础上针对特定任务进行进一步训练以提高性能">微调（Fine-tuning）：在预训练模型的基础上，针对特定任务进行进一步训练，以提高性能</a></li>
+    <li><a href="#提示词prompt或引导语给大语言模型开始推理工作的起点">提示词（prompt）（或引导语）：给大语言模型开始推理工作的起点</a></li>
+    <li><a href="#知识库knowledge-base一组用来帮助模型服务于特定领域的结构化的信息">知识库（Knowledge Base）：一组用来帮助模型服务于特定领域的结构化的信息</a></li>
+    <li><a href="#ragretrieval-augmented-generation-想象你是一位作家正在尝试写一篇关于特定主题的文章"><strong>RAG（Retrieval-Augmented Generation）</strong>： 想象你是一位作家，正在尝试写一篇关于特定主题的文章。</a></li>
+    <li><a href="#嵌入embeddings将词汇或短语转换成高维空间中的向量以捕捉其含义">嵌入（Embeddings）：将词汇或短语转换成高维空间中的向量，以捕捉其含义</a></li>
+    <li><a href="#零次学习zero-shot-learning模型在没有明确训练的情况下能够处理未见过的类别或任务">零次学习（Zero-Shot Learning）：模型在没有明确训练的情况下，能够处理未见过的类别或任务。</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="大语言模型最重要的15个概念">大语言模型最重要的15个概念</h1>
+<p>各位观众老爷大家好，今天我们来给大家补课，我们在之前的教程中，带领大家搭建了本地的大语言模型服务。但是对于很多观众而言。大语言模型相关的一些技术概念仍然晦涩难懂，今天我们就一次性为大家解读清楚。</p>
+<h2 id="神经网络neural-networks想象成一种模仿人脑工作方式的计算系统通过大量数据学习如何执行任务">神经网络（Neural Networks）：想象成一种模仿人脑工作方式的计算系统，通过大量数据学习如何执行任务</h2>
+<p>现在，我们所熟知的ai产品。都是构建在神经网络架构之上的计算机技术。这种技术既包括软件算法也包括硬件处理机制。</p>
+<p>神经网络技术，最早可以追溯到1940年代，但是限于当时的机械式计算机的计算能力，这一算法的实际应用场景十分有限。1960年代和1980年代，神经网络技术出现过两次热潮。但最终被1995年出现的支持向量机（SVM）技术压过风头。
+2006年开始神经网络技术迎来复苏。2010年往后，卷积神经网络(CNN)和递归神经网络(RNN)相继主导了几乎所有你能看到的人工智能产品，包括图像识别、语音识别、语义识别、自动翻译等等。</p>
+<p>所谓神经网络，就是用计算机来模仿生物神经处理信息的过程，概要来说，就是让每个计算单元仅仅只处理非常简单的底层逻辑，通过这些简单的计算单元，层层堆叠来实现复杂的上层业务。</p>
+<h2 id="transformer模型一种基于注意力机制的模型广泛应用于处理序列数据">Transformer模型：一种基于注意力机制的模型，广泛应用于处理序列数据</h2>
+<p>没错，Transformer的名称来自于著名的IP变形金刚。到我们说到transformer模型时，是指的transformer模型架构，或者基于Transformer架构的某一个模型。Transformer模型是一种基于注意力机制的神经网络架构，由Google在2017年的论文《Attention Is All You Need》中首次提出。它主要用于处理序列到序列（Seq2Seq）的任务，如机器翻译、文本摘要、问答系统等。Transformer模型的创新是完全放弃了之前广泛使用的循环神经网络（RNN）和卷积神经网络（CNN），转而采用全注意力机制来处理序列数据。这种设计使得模型可以更有效地并行处理数据，大大提高了训练速度和效率。 GPT、GPT2、ChatGPT是Transformer模型的典型代表。</p>
+<h2 id="生成式模型generative-models能够创建新内容如文本的模型">生成式模型（Generative Models）：能够创建新内容（如文本）的模型</h2>
+<p>2017年，Transformer模型横空出世。几乎在所有的应用领域都击败了CNN和RNN，并且创造出了根据经验主动生成文字、图片、音频、视频的全新人工智能产品线。这项技术被称为生成式（Generative）。“生成式”这个词汇在英语当中也并非一个很常见的词汇。但是现在我们已经通过一系列产品，例如ChatGPT、Midjourney，理解了他的含义——也就是说，我们现在制造出了具有一定“创造力”的人工智能，我们可以通过这些人工智能生成那些从前不存在的信息。这一点与以前的AI技术形成了鲜明的对比。</p>
+<h2 id="参数parameters模型中的变量通过训练过程调整以优化性能">参数（Parameters）：模型中的变量，通过训练过程调整以优化性能。</h2>
+<p>参数是我们用来表示一个模型规模大小的指标，常见的参数有70亿（也就是7B，B表示Billion）、130亿（13B)、340亿（34B）、700亿（70B）等。你可以将每一个参数理解为一个神经元，就像神经元一样参数只负责非常单一的任务。通常，具有更大规模参数的模型性能更强，就像拥有更多神经元的猴子，比鸟要更加聪明一样。</p>
+<p>但是，具有更大的参数，意味着需要更多的计算能力。超过14b的模型很难在消费级的计算机上运行。</p>
+<h2 id="量化模型low-bit-quantization将transformer模型参数量化到8位16位甚至更低位宽的表示">量化模型（Low-Bit Quantization）：将Transformer模型参数量化到8位、16位甚至更低位宽的表示</h2>
+<p>在机器学习和深度学习领域，量化模型通常指的是一种特定的技术或过程，旨在减少模型的大小和提高其运行速度。这包括将模型中的浮点参数转换为整数参数，以实现模型压缩。具体来说，模型量化涉及到将模型的参数从高精度（如FP32）映射到低精度（如4bit位，这种模型通常会标注q4_0），同时尽量减少精度损失。这一过程不仅有助于降低模型的计算需求和内存占用，还能够在保持较高预测精度的同时，加速模型的推理速度。</p>
+<p>Transformer的模型可以使用双精度（FP64）、单精度（FP32）半精度（FP16）、8比特位（Int8）、4比特位（Int4）等不同精度的数据来存储每一个参数。注意哟，“比特位”并不是“位”，斯比特位并不是指的4位数的数，。压缩模型在理论上仍然是会造成性能损失的。</p>
+<h2 id="上下文context模型在生成或理解语言时考虑的周围单词或句子">上下文（Context）：模型在生成或理解语言时考虑的周围单词或句子</h2>
+<p>生成式模型的特点是依赖上下文推理，猜测接下来将要出现的内容搭配。这种内容搭配可以是文字、图形（也就是颜色和位置）以及声音。就像我们学习语言时，会学习习惯用法和固定搭配。对于计算机而言，逻辑、情感、风格，甚至语言种类都只不过是一种习惯用法或固定搭配而已。模型通过对上下文的分析（对于中文使用者，这里通常指的是用户输入的“上文”，即关键字、提示词、指令），预测符合该上下文的输出内容。</p>
+<h2 id="上下文长度context-length模型在生成或理解文本时能够考虑的上下文信息的最大长度">上下文长度（Context Length）：模型在生成或理解文本时能够考虑的上下文信息的最大长度</h2>
+<p>Transformer模型在处理上下文长度上存在限制。在大语言模型面市的早期，这个限制通常是4096个Token（4k），这大约是3000个单词或者2000多个汉字。它既包含输入的内容，也包含了输出的内容。输入和输出相加，整体不能超过这个上限。现在有越来越多的大模型，将上限提到了8192个Token（8k）以上。这主要是由于Transformer模型依赖于注意力机制。当上下文长度增长时，计算量呈指数级增长，为了在工程上保持模型可用，当前Transformer模型设计时会设置一个固定的最大上下文长度。研究者们正通过探索新的架构和技术，努力提升模型处理更长上下文的能力，目前，已经有一些模型提供高达128k Token的上下文输入输出能力。在其他的生成式模型中，也存在类似的限制。例如stable diffusion限制提示词的长度和输出图片的尺寸。</p>
+<h2 id="大型语言模型llms通过transformer模型分析海量的文本数据来深入理解并运用人类语言的一类模型">大型语言模型（LLMs）：通过Transformer模型分析海量的文本数据来深入理解并运用人类语言的一类模型。</h2>
+<p>大语言模型是我们前面教程讨论的核心，它是transformer模型应用实践中最早的一个种类，主要用来处理文本数据。他通过模拟人的思考，执行各种语言相关的任务，如回答问题、撰写文本、翻译不同语言以及模仿特定写作风格等。它们具备了从大量阅读材料中学习的能力，从而能够生成文本、理解复杂语境，并提供信息丰富的回应。现在，大型语言模型已经广泛应用于教育、新闻、娱乐、客户服务和科研等多个领域。</p>
+<h2 id="预训练pre-training在大量数据上训练模型以学习通用的输出">预训练（Pre-training）：在大量数据上训练模型以学习通用的输出</h2>
+<p>构造一个Transformer模型分为三步：首先是设计模型架构，包括参数规模、网络层数等；其次，是进行预训练，填充初始知识；最后，是进行特定的微调。预训练过程是一个非常消耗计算资源的过程，LLaMa3的预训练耗费了约2.4万张H100计算卡数月时间（每张卡价值20万）。如果你想预训练一个最简单的大语言模型，至少要给它提供完整的语言教材和阅读材料，让它学习语言的基本知识，比如单词的意思、句子的结构等，这样模型才能获得一定的语言理解能力。</p>
+<p>预训练是很有可能失败的。如果模型架构设计不合理，或者输入的数据相关度不高，无法形成收敛，最终导致模型无法拟合。一旦预训练失败，就会浪费掉了大量的计算资源。</p>
+<h2 id="微调fine-tuning在预训练模型的基础上针对特定任务进行进一步训练以提高性能">微调（Fine-tuning）：在预训练模型的基础上，针对特定任务进行进一步训练，以提高性能</h2>
+<p>在模型通过预训练掌握了基础知识后，我们通常还需要对它进行“微调”。有时候，微调就像是给它一个特定的任务，比如翻译或回答问题，并让它在少量的相关数据上进行学习，以便更好地完成这个任务。另外一些时候，微调的目的是出于安全考量。我们通过微调给模型设置安全边界，让它拒绝回答有毒的问题，或者输出危害社会的结果，一个典型的例子是，防止它编写计算机病毒。微调有多种办法，现在最流行的微调方式是微软发布的LoRa方法。这种方法可以在模型之外加载独立的微调模型，提升模型的能力。这些微调模型还可以被合并到主模型中，使其成为预训练的一部分。</p>
+<h2 id="提示词prompt或引导语给大语言模型开始推理工作的起点">提示词（prompt）（或引导语）：给大语言模型开始推理工作的起点</h2>
+<p>在大语言模型中，prompt通常是一段文本，可以是一个问题，比如，“请解释什么是光合作用？”，或者一个请求，比如，“给我写一封正式的商务邮件。”在所有这些情况中，prompt的作用都是给模型一个开始工作的方向或者起点。模型会根据prompt的内容，利用它在预训练阶段学到的知识，来生成回应或者完成任务。</p>
+<p>为了让大语言模型更好的完成我们指定的任务，我们还会设置”系统提示词“（system prompt）。系统提示词会帮助大语言模型识别当前请求的更多背景，以提供更好的输出内容。比如说当我问他请解释什么是光合作用时，我可以设置一个系统提示词：“你是一位植物园的讲解员”。这样将会帮助大语言模型输出更好的答案。</p>
+<p>这个听起来有点不可思议，为什么我给大语言模型设置了特别的人设之后，他就能更好地回答我的问题呢？这是因为这些信息都已经通过预训练存储在了大模型内。你必须要设置相应的提示词，才能够检索到这一部分信息。这就好像你记住了某个故事，但是只有在特定的场景才能够激起你的回忆。</p>
+<h2 id="知识库knowledge-base一组用来帮助模型服务于特定领域的结构化的信息">知识库（Knowledge Base）：一组用来帮助模型服务于特定领域的结构化的信息</h2>
+<p>在人工智能系统中，知识库用来存储重要的事实和关系。在实践中，知识库可以是一组Word文档，或者图片，或者表格，或者代码片段。当系统需要回答复杂的问题或执行需要背景知识的任务时，我们就会为系统创建相关的知识库。简而言之，知识库就像是AI系统的“辅助记忆”或者“课堂笔记”，帮助它利用额外信息更好地理解和回答问题。</p>
+<h2 id="ragretrieval-augmented-generation-想象你是一位作家正在尝试写一篇关于特定主题的文章"><strong>RAG（Retrieval-Augmented Generation）</strong>： 想象你是一位作家，正在尝试写一篇关于特定主题的文章。</h2>
+<p>你需要写一篇关于德古拉吸血鬼的报告，即便你非常喜欢这个话题，但你所知道的信息仍然有限，因此需要依赖许多与这个主题相关的书籍和资料，才能完成写作。RAG方法也是也是类似的，它结合了两个过程：首先，它像图书馆检索一样，从知识库中检索相关信息；然后，它像作家一样，利用检索到的信息生成文本。</p>
+<p>这是一种非常好的绕过Transformer有限的上下文限制的方法。具体过程包括：1）知识库的向量化；2）根据需求检索向量数据；3）模型通过向量数据补充的信息进行推理；4）输出包含知识库信息的答案。</p>
+<p>实际上，New Bing或者Metaso等AI搜索引擎就是采用知识库的方法回答我们的提问，只不过他们采用的知识库就是搜索引擎中的一个个网页。</p>
+<h2 id="嵌入embeddings将词汇或短语转换成高维空间中的向量以捕捉其含义">嵌入（Embeddings）：将词汇或短语转换成高维空间中的向量，以捕捉其含义</h2>
+<p>嵌入是将单词或短语转换成数字形式（向量）的方法，这样计算机可以理解和处理它们。通常我们在进行RAG任务的时候，会对我们的嗯知识库进行嵌入处理。嵌入后的文本呈现为一个数组，它们大概长成这样：[43.12,5.18,74.9,6.55&hellip;..]。你可以在向量库管理软件中看到这些数据，但是对于你而言，这些数据并没有任何明确的含义。你可以把这个过程想象成给每个单词一个独特的指纹，这个指纹捕捉了单词的某些特性，使得计算机可以通过这些指纹来识别和比较单词。</p>
+<h2 id="零次学习zero-shot-learning模型在没有明确训练的情况下能够处理未见过的类别或任务">零次学习（Zero-Shot Learning）：模型在没有明确训练的情况下，能够处理未见过的类别或任务。</h2>
+<p>这是指在没有任何直接指导的情况下，尝试完成某项任务。就像是一个经验丰富的厨师，即使没有被特别教过如何做一道新菜，也能够根据他对烹饪的理解和经验来尝试制作。在语言模型中，零次学习意味着模型尝试去理解和执行它没有直接训练过的任务，这通常依赖于它在预训练阶段获得的广泛知识。有时候，我们也将零次学习的能力描述为“涌现”，也就是说模型产生了我们没有预期到的能力。</p>
+<p>参考资料</p>
+<ol>
+<li><a href="https://datawhalechina.github.io/so-large-lm/" target="_blank" rel="noopener noreffer ">大模型理论基础</a></li>
+<li><a href="https://intro-llm.github.io/" target="_blank" rel="noopener noreffer ">大规模语言模型：从理论到实践</a></li>
+<li><a href="https://blog.csdn.net/m0_62554628/article/details/136773270" target="_blank" rel="noopener noreffer ">AI大型语言模型的基础理论与实践原创</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/159223343" target="_blank" rel="noopener noreffer ">终于有人把自然语言处理、机器学习、深度学习和ai讲明白了 - 知乎</a></li>
+<li><a href="https://developer.aliyun.com/article/1474409" target="_blank" rel="noopener noreffer ">大语言模型定义、概念介绍</a></li>
+<li><a href="https://unite.ai/zh-CN/%E6%8E%8C%E6%8F%A1%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%8C%87%E5%8D%97/" target="_blank" rel="noopener noreffer ">掌握大型语言模型指南 - Unite.AI</a> [2024-01-24]</li>
+<li><a href="http://ai.ruc.edu.cn/research/science/20230605100.html" target="_blank" rel="noopener noreffer ">大语言模型综述 - Renmin University of China</a> [2023-06-05]</li>
+<li><a href="https://blog.csdn.net/baidu_39417409/article/details/136170092" target="_blank" rel="noopener noreffer ">大语言模型基本概念（学习笔记） 转载</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/647511022" target="_blank" rel="noopener noreffer ">全面解析大语言模型的工作原理 - 知乎 - 知乎专栏</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/" data-title="语言模型最重要的15个概念" data-hashtags="科普,Python,概念,AI,LLM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/" data-hashtag="科普"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/" data-title="语言模型最重要的15个概念"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/" data-title="语言模型最重要的15个概念"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/" data-title="语言模型最重要的15个概念"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%A7%91%E6%99%AE/">科普</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/llm/">LLM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/langchain-chatchat-%E6%90%AD%E5%BB%BA%E9%97%AE%E7%AD%94%E7%9F%A5%E8%AF%86%E5%BA%93/" class="prev" rel="prev" title="Langchain Chatchat 搭建问答知识库"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Langchain Chatchat 搭建问答知识库</a>
+            <a href="/posts/docker%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="next" rel="next" title="Docker快速入门">Docker快速入门<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">码钉泥的编程世界 | 哔哩哔哩教程</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://martins.nom.za" target="_blank">码钉泥</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

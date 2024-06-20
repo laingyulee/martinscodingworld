@@ -1,0 +1,98 @@
+baseURL = "https://martins.nom.za"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "LoveIt"
+
+# website title
+title = "Martin's Coding World"
+
+# language code ["en", "zh-CN", "fr", "pl", ...]
+languageCode = "zh-CN"
+# language name ["English", "简体中文", "Français", "Polski", ...]
+languageName = "简体中文"
+# 是否包括中日韩文字
+hasCJKLanguage = true
+
+# Author config
+[author]
+  name = "码钉泥"
+  email = "me@martins.nom.za"
+  link = "https://martins.nom.za"
+
+# Menu config
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "about"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    name = "关于"
+    url = "/about/"
+    # title will be shown when you hover on this menu link
+    title = ""
+  [[menu.main]]
+    weight = 2
+    identifier = "books"
+    pre = ""
+    post = ""
+    name = "电子书"
+    url = "/books/"
+    title = ""
+  [[menu.main]]
+    weight = 3
+    identifier = "gpus"
+    pre = ""
+    post = ""
+    name = "显卡推荐"
+    url = "/gpus/"
+    title = ""
+  [[menu.main]]
+    weight = 4
+    identifier = "package"
+    pre = ""
+    post = ""
+    name = "懒人包"
+    url = "/package/"
+    title = ""
+  [[menu.main]]
+    weight = 5
+    identifier = "service"
+    pre = ""
+    post = ""
+    name = "付费服务"
+    url = "/service/"
+    title = ""
+  [[menu.main]]
+    weight = 6
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "标签"
+    url = "/tags/"
+    title = ""
+  [[menu.main]]
+    weight = 7
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "分类"
+    url = "/categories/"
+    title = ""
+  [[menu.main]]
+    weight = 8
+    identifier = "posts"
+    pre = ""
+    post = ""
+    name = "存档"
+    url = "/posts/"
+    title = ""
+    
+# Markup related configuration in Hugo
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+

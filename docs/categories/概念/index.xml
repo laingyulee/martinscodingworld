@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>概念 - Category - Martin&#39;s Coding World</title>
+        <link>http://localhost:1313/categories/%E6%A6%82%E5%BF%B5/</link>
+        <description>概念 - Category - Martin&#39;s Coding World</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>me@martins.nom.za (码钉泥)</managingEditor>
+            <webMaster>me@martins.nom.za (码钉泥)</webMaster><lastBuildDate>Wed, 01 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%A6%82%E5%BF%B5/" rel="self" type="application/rss+xml" /><item>
+    <title>语言模型最重要的15个概念</title>
+    <link>http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/</link>
+    <pubDate>Wed, 01 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>码钉泥</author>
+    <guid>http://localhost:1313/posts/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8415%E4%B8%AA%E6%A6%82%E5%BF%B5/</guid>
+    <description><![CDATA[今天我们来给大家补课，我们在之前的教程中，带领大家搭建了本地的大语言模型服务。但是对于很多观众而言。大语言模型相关的一些技术概念仍然晦涩难懂，今天我们就一次性为大家解读清楚LLM最重要的15个概念。]]></description>
+</item>
+</channel>
+</rss>

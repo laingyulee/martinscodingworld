@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>无需显卡 利用chatglm3-6b来搭建自己的本地大源模型 - Martin&#39;s Coding World</title><meta name="Description" content="码码钉泥的编程世界"><meta property="og:url" content="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">
+  <meta property="og:site_name" content="Martin&#39;s Coding World">
+  <meta property="og:title" content="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型">
+  <meta property="og:description" content="怎么样搭建一个属于自己的AI大语言模型应用呢？今天我们就利用chatglm3-6b来搭建自己的本地大源模型。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-12-10T00:00:00+00:00">
+    <meta property="article:tag" content="ChatGLM3">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="离线">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="LLM">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型">
+  <meta name="twitter:description" content="怎么样搭建一个属于自己的AI大语言模型应用呢？今天我们就利用chatglm3-6b来搭建自己的本地大源模型。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" /><link rel="next" href="http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "无需显卡 利用chatglm3-6b来搭建自己的本地大源模型",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B\/"
+        },"genre": "posts","keywords": "ChatGLM3, Python, 离线, AI, LLM","wordcount":  3626 ,
+        "url": "http:\/\/localhost:1313\/posts\/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B\/","datePublished": "2023-12-10T00:00:00+00:00","dateModified": "2023-12-10T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "码钉泥"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/books/"> 电子书 </a><a class="menu-item" href="/gpus/"> 显卡推荐 </a><a class="menu-item" href="/package/"> 懒人包 </a><a class="menu-item" href="/service/"> 付费服务 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 存档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Martin&#39;s Coding World"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/logo.png"
+        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
+        data-sizes="auto"
+        alt="/logo.png"
+        title="/logo.png" />Martin&#39;s Coding World</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/books/" title="">电子书</a><a class="menu-item" href="/gpus/" title="">显卡推荐</a><a class="menu-item" href="/package/" title="">懒人包</a><a class="menu-item" href="/service/" title="">付费服务</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">存档</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">无需显卡 利用chatglm3-6b来搭建自己的本地大源模型</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://martins.nom.za" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>码钉泥</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>教程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-10">2023-12-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3626 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前置">前置</a></li>
+    <li><a href="#软件环境">软件环境</a></li>
+    <li><a href="#第一步-语言模型">第一步 语言模型</a>
+      <ul>
+        <li><a href="#关于chatglm3模型">关于ChatGLM3模型</a></li>
+        <li><a href="#获取chatglm3">获取ChatGLM3</a></li>
+        <li><a href="#什么是模型量化">什么是模型量化</a></li>
+        <li><a href="#如何转化量化模型">如何转化量化模型？</a></li>
+        <li><a href="#如何下载量化模型">如何下载量化模型？</a></li>
+      </ul>
+    </li>
+    <li><a href="#第二步-配置api环境">第二步 配置API环境</a>
+      <ul>
+        <li><a href="#创建虚拟环境">创建虚拟环境</a></li>
+      </ul>
+    </li>
+    <li><a href="#第三步桌面客户端">第三步桌面客户端</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#更新一键启动懒人包">更新：一键启动懒人包</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="搭建本地的ai大语言模型">搭建本地的AI大语言模型</h1>
+<p>更多AIGC教程，访问UP「码钉泥」的B站
+<a href="https://space.bilibili.com/650927704/" target="_blank" rel="noopener noreffer ">https://space.bilibili.com/650927704/</a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>ChatGPT虽好，确有诸多限制。需要魔法上网、需要境外手机号注册。当用户过多的时候，还需要耐心排队才能够使用。当你希望进行一些自动化的API操作时，你还需要准备一张境外银行卡进行支付，才能获得使用API的权限。</p>
+<p>那么，怎么样才能够搭建一个完全<strong>属于自己</strong>的<strong>不用受限</strong>且<strong>免费</strong>的<strong>本地</strong>大语言模型呢？</p>
+<p>请看下面的公式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">ChatGLM3 + ChatBox + Python + 中档性能以上的计算机 = 私有大语言模型
+</span></span></code></pre></div><p>今天我们就来帮助大家实现这个看似不可能完成的任务。放心吧，ChatGLM3、ChatBox、Python都是免费软件。</p>
+<h2 id="前置">前置</h2>
+<p>如果你没有Python编程的任何经验，你可以考虑看一看我的Python五分钟入门教程。当然了，这并不是必须的。</p>
+<h2 id="软件环境">软件环境</h2>
+<p>本教程仅适用于Windows开发环境。请使用Windows 10 / 11 和 Python 3.8 以上版本进行配置。笔者使用的是 Win11 22H2 Pro 和 Python 3.8 环境。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="第一步-语言模型">第一步 语言模型</h2>
+<h3 id="关于chatglm3模型">关于ChatGLM3模型</h3>
+<p>我们需要用到ChatGLM3模型，关于ChatGLM3模型是何方神圣，就让它自己来介绍一下吧。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%201.png"
+        data-srcset="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%201.png, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%201.png 1.5x, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%201.png 2x"
+        data-sizes="auto"
+        alt="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%201.png"
+        title="Untitled" /></p>
+<blockquote>
+<p>ChatGLM3-6B 是一个人工智能助手，由清华大学 KEG 实验室和智谱 AI 公司于 2023 年共同训练的语言模型 GLM3-6B 开发而成。该助手基于大型语言模型，可以针对用户的问题和要求提供适当的答复和支持。ChatGLM3-6B 的能力涵盖了对话、摘要、翻译、问答等方面，适用于多种场景。该助手还具有自然语言处理和机器学习技术，能够不断学习和优化自己的回答能力。</p>
+</blockquote>
+<p>根据笔者的实际测试，发现ChatGLM3-6B的中文问答能力强于依托LLaMA/LLaMA2训练的Alpaca-6B / Vicuna-6B / Alpaca-6B-Chinese等开源语言模型。作为简单的办公小助理，执行百科查询、公式编写、外语翻译等应用，的确可以起到提高工作效率的作用。</p>
+<h3 id="获取chatglm3">获取ChatGLM3</h3>
+<p>ChatGLM3是一款开源模型，你可以通过下面的地址去下载它们。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Seq Length</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGLM3-6B</td>
+<td>8k</td>
+<td><a href="https://huggingface.co/THUDM/chatglm3-6b" target="_blank" rel="noopener noreffer ">https://huggingface.co/THUDM/chatglm3-6b</a> </td>
+</tr>
+<tr>
+<td>ChatGLM3-6B-Base</td>
+<td>8k</td>
+<td><a href="https://huggingface.co/THUDM/chatglm3-6b-base" target="_blank" rel="noopener noreffer ">https://huggingface.co/THUDM/chatglm3-6b-base</a> </td>
+</tr>
+<tr>
+<td>ChatGLM3-6B-32K</td>
+<td>32k</td>
+<td><a href="https://huggingface.co/THUDM/chatglm3-6b-32k" target="_blank" rel="noopener noreffer ">https://huggingface.co/THUDM/chatglm3-6b-32k</a> </td>
+</tr>
+</tbody>
+</table>
+<p>不过上面三个模型都不是今天的主角。今天我们需要下载一个经过量化处理后的ChatGLM3-6b模型。</p>
+<h3 id="什么是模型量化">什么是模型量化</h3>
+<blockquote>
+<p>量化处理可以通过将模型参数和模型本身转化为数字形式来减小模型的存储空间。在传统的模型训练中，模型参数和模型本身通常被存储为二进制文件或文本文件，这些文件通常占用较大的存储空间。而量化处理可以将这些参数和模型转换为更小的数字形式，例如浮点数或整数，从而减小文件的存储空间。此外，量化处理还可以将模型中的某些参数进行压缩或剪裁，以进一步减小模型的存储空间。这些措施可以有效地提高模型的存储效率，降低模型的部署成本，并加快模型的训练和部署速度。</p>
+</blockquote>
+<p>使用量化模型的另外一个好处是，你可以单独使用CPU运行这些模型，而不再需要显卡，并且占用更小的内存。因为量化过程将浮点数据（更适合显卡运算）转换成了整形数据（更适合CPU运行）。ChatGLM-6B未量化之前需要占用13G的显存或者32G的内存才能运行；而进行量化之后，可以在8G内存的主机上运行。</p>
+<h3 id="如何转化量化模型">如何转化量化模型？</h3>
+<p>量化运行库通常会提供进行模型量化的工具。我们将使用https://github.com/li-plus/chatglm.cpp来运行ChatGLM3-6B模型，它为我们提供了转换工具。使用 convert.py 将 ChatGLM-6B模型 转换为量化 GGML 格式。例如，将 fp16 原始模型转换为 q4_0 （量化 int4）GGML 模型，可以运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 chatglm_cpp/convert.py -i THUDM/chatglm-6b -t q4_0 -o chatglm-ggml.bin
+</span></span></code></pre></div><p>前提是你已经下载了完整地ChatGLM-6B模型（大约13G）。或者，我们也可以直接下载已经转化好的ChatGLM-6B量化模型。</p>
+<h3 id="如何下载量化模型">如何下载量化模型？</h3>
+<ol>
+<li>你可以访问这个地址下载：</li>
+</ol>
+<p><a href="https://www.modelscope.cn/models/tiansz/chatglm3-6b-ggml/files" target="_blank" rel="noopener noreffer ">https://www.modelscope.cn/models/tiansz/chatglm3-6b-ggml/files</a></p>
+<p>下载下面这个文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chatglm3-ggml.bin
+</span></span></code></pre></div><ol>
+<li>
+<p>或者 <a href="https://www.modelscope.cn/models/tiansz/chatglm3-6b-ggml/file/view/master/chatglm3-ggml.bin?status=2" target="_blank" rel="noopener noreffer ">点击这里</a> 直接下载</p>
+</li>
+<li>
+<p>或者通过 git 克隆这个repo获得量化模型</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> git clone https://www.modelscope.cn/tiansz/chatglm3-6b-ggml.git
+</span></span></code></pre></div><p>最后你将获得一个 3.27G 大小的 chatglm3-ggml.bin 文件。将它存储到你的工作目录下。</p>
+<h2 id="第二步-配置api环境">第二步 配置API环境</h2>
+<p>接下来，我们将进行API运行环境的配置。你需要在自己的电脑上安装Python 3.8以上的版本。我推荐安装Python 3.10.6（许多AI应用都推荐使用这个版本），或更新的Python 3.10.x运行环境。当然，根据笔者实际使用体验，Python 3.8（截至2023年12月仍在维护的最低版本Python3）跑起来也没有太大问题。</p>
+<h3 id="创建虚拟环境">创建虚拟环境</h3>
+<p>我们需要为ChatGLM3-6b创建一个虚拟运行环境，以避免不同的Python应用之间发生干扰。</p>
+<p>首先安装virtualenv（这是一款古老的虚拟环境创建工具）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install virtualenv
+</span></span></code></pre></div><p>然后创建一个名为local_chat的虚拟环境：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virtualenv local_chat
+</span></span></code></pre></div><p>现在<strong>local_chat</strong>目录就是你的<strong>工作环境</strong>，你可以将你下载好的chatglm3-ggml.bin文件放到这个目录下面。</p>
+<p>接下来让我们激活这个虚拟环境并安装必要的运行库。打开一个cmd窗口，并且切换到你的工作目录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> D:/local_chat
+</span></span><span class="line"><span class="cl">./Scripts/activate.bat
+</span></span></code></pre></div><p>现在你可以看到命令行窗口的提示符前面出现了一个括号，括号内显示(local_chat)。这意味着你已经激活了虚拟环境。虚拟环境对于Windows的目录操作没有任何影响。它只针对Python的运行环境有效。当你激活了虚拟环境后，无论你在任何目录下进行Python相关的操作，你调用的都是虚拟环境内的Python和pip运行库管理工具。</p>
+<p>现在我们需要安装ChatGLM3-6b运行所需要的一些Python库。</p>
+<p>请访问下面这个链接，下载与你的Python版本相同的whl文件。</p>
+<p><a href="https://github.com/li-plus/chatglm.cpp/releases/tag/v0.3.0" target="_blank" rel="noopener noreffer ">https://github.com/li-plus/chatglm.cpp/releases/tag/v0.3.0</a></p>
+<p>或者直接点击下面的下载链接也可以。</p>
+<p><a href="https://github.com/li-plus/chatglm.cpp/releases/download/v0.3.0/chatglm_cpp-0.3.0-cp38-cp38-win_amd64.whl" target="_blank" rel="noopener noreffer ">chatglm_cpp-0.3.0-cp38-cp38-win_amd64.whl</a></p>
+<p><a href="https://github.com/li-plus/chatglm.cpp/releases/download/v0.3.0/chatglm_cpp-0.3.0-cp39-cp39-win_amd64.whl" target="_blank" rel="noopener noreffer ">chatglm_cpp-0.3.0-cp39-cp39-win_amd64.whl</a></p>
+<p><a href="https://github.com/li-plus/chatglm.cpp/releases/download/v0.3.0/chatglm_cpp-0.3.0-cp310-cp310-win_amd64.whl" target="_blank" rel="noopener noreffer ">chatglm_cpp-0.3.0-cp310-cp310-win_amd64.whl</a></p>
+<p><a href="https://github.com/li-plus/chatglm.cpp/releases/download/v0.3.0/chatglm_cpp-0.3.0-cp311-cp311-win_amd64.whl" target="_blank" rel="noopener noreffer ">chatglm_cpp-0.3.0-cp311-cp311-win_amd64.whl</a></p>
+<p><a href="https://github.com/li-plus/chatglm.cpp/releases/download/v0.3.0/chatglm_cpp-0.3.0-cp312-cp312-win_amd64.whl" target="_blank" rel="noopener noreffer ">chatglm_cpp-0.3.0-cp312-cp312-win_amd64.whl</a></p>
+<p>同样下载完成后，请把这个文件放到你的工作目录。执行下面的指令，通过whl文件离线安装运行库。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>lcoal_chat<span class="o">)</span> D:/local_chat pip install chatglm_cpp-0.3.0-cp310-cp310-win_amd64.whl
+</span></span></code></pre></div><p>我推荐你采用上面的方法。当然你也可以跳过下载whl文件，尝试使用下面的指令在线安装。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install chatglm_cpp
+</span></span></code></pre></div><p>你很可能发现安装失败。因为本地编译需要安装Visual studio 2023 community版本。</p>
+<p>当你安装完成chatglm_cpp的基础运行库后，我们还需要安装其他辅助库。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install <span class="s1">&#39;chatglm-cpp[api]&#39;</span>
+</span></span></code></pre></div><p>因为你之前已经进行了chatglm-cpp的本地安装，安装程序会自动跳过它，并继续安装其他的辅助库。这些辅助库将帮助我们在本地启动一个API服务器。</p>
+<p>如果你的安装过程非常漫长，甚至出现失败，你可以尝试搜索“pip清华源”或“pip中科大源”，并根据网上的提示修改你的pip下载源。然后重新运行上面的辅助库安装指令。</p>
+<p>什么是API服务器？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>没关系，你不用准确理解什么是API服务器。你只需要知道它将会调用chatglm3-ggml.bin文件，并解答我们提出的任何问题。</p>
+<p>创建一个名为API_server.bat的文件，复制下面的内容到这个文件内，并保存至工作环境。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">set </span><span class="n">MODEL</span><span class="p">=%~</span><span class="nb">dp0chatglm3-ggml</span><span class="p">.</span><span class="py">bin</span>
+</span></span><span class="line"><span class="cl"><span class="n">call</span> <span class="p">%~</span><span class="n">dp0</span><span class="p">/</span><span class="n">Scripts</span><span class="p">/</span><span class="n">activate</span><span class="p">.</span><span class="py">bat</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd </span><span class="p">%~</span><span class="n">dp0</span>
+</span></span><span class="line"><span class="cl"><span class="n">uvicorn</span> <span class="n">chatglm_cpp</span><span class="p">.</span><span class="n">openai_api</span><span class="err">:</span><span class="n">app</span> <span class="p">-</span><span class="n">-host</span> <span class="mf">127.0</span><span class="p">.</span><span class="py">0</span><span class="p">.</span><span class="py">1</span> <span class="p">-</span><span class="n">-port</span> <span class="mf">8000</span>
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>双击 API_server.bat 文件，如果出现下面图片中的界面就说明你的API服务器已经正常开始工作。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%202.png"
+        data-srcset="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%202.png, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%202.png 1.5x, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%202.png 2x"
+        data-sizes="auto"
+        alt="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%202.png"
+        title="Untitled" /></p>
+<p>如果你看见命令行窗口闪现又关闭。那么很可能是因为你的目录结构与我设置的不同。请参考我的目录结构重新放置你的文件，然后重试启动API服务器。</p>
+<h2 id="第三步桌面客户端">第三步桌面客户端</h2>
+<p>现在你已经拥有一个正在运行ChatGLM3-6b API服务器。我们打开一个命令行窗口，简单测试一下吧。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://127.0.0.1:8000/v1/models
+</span></span></code></pre></div><p>几秒钟后，你就能从屏幕上读取回复（返回可用的模型列表）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;object&#34;</span><span class="p">:</span><span class="s2">&#34;list&#34;</span><span class="p">,</span><span class="nt">&#34;data&#34;</span><span class="p">:[{</span><span class="nt">&#34;id&#34;</span><span class="p">:</span><span class="s2">&#34;gpt-3.5-turbo&#34;</span><span class="p">,</span><span class="nt">&#34;object&#34;</span><span class="p">:</span><span class="s2">&#34;model&#34;</span><span class="p">,</span><span class="nt">&#34;owned_by&#34;</span><span class="p">:</span><span class="s2">&#34;owner&#34;</span><span class="p">,</span><span class="nt">&#34;permission&#34;</span><span class="p">:[]}]}</span>
+</span></span></code></pre></div><p>很好，这说明我们的系统运行正常。但是这样不太方便，我们需要下载一个桌面客户端来进行提问和查看回答。</p>
+<p>我推荐你们使用chat box这个工具。它的界面如下图所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%203.png"
+        data-srcset="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%203.png, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%203.png 1.5x, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%203.png 2x"
+        data-sizes="auto"
+        alt="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%203.png"
+        title="Untitled" /></p>
+<p>你可以通过下面这个地址。</p>
+<p><a href="https://chatboxai.app/zh" target="_blank" rel="noopener noreffer ">https://chatboxai.app/zh</a></p>
+<p>完成简单的安装后，我们需要配置Checkbox的API服务器。</p>
+<ol>
+<li>点击设置。在模型选项卡中，将AI模型提供方更改为OpenAI API。</li>
+<li>OpenAI API密钥留空。</li>
+<li>Api域名填写：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http://127.0.0.1:8000
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%204.png"
+        data-srcset="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%204.png, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%204.png 1.5x, /images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%204.png 2x"
+        data-sizes="auto"
+        alt="/images/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84AI%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/Untitled%204.png"
+        title="Untitled" /></p>
+<p>保存以上配置。点击chatbox左侧的just chat标签，尝试与ChatGLM3-6B模型进行对话。根据你的计算机的性能，通常需要等待几秒到几十秒才能获得回答。</p>
+<p>你也可以尝试chatbox提供的预制人设，这些人设可以帮助你撰写小红书文案、提供人生格言或进行外语翻译。</p>
+<h2 id="总结">总结</h2>
+<p>笔者测试，英特尔i5 6代处理器、8G内存的笔记本电脑回答一般问题的耗时大约60~90秒。英特尔i77代处理器，16G内存的台式机回答一般问题耗时大约10~20秒。英特尔i5 12代处理器，16G内存的笔记本电脑回答一般问题的耗时大约10~30秒。基本上最近几年生产的主流笔记本或台式机，都可以按照上面的方法运行本地大语言模型。你也可以尝试测试更老的CPU和更小的内存组合，欢迎和笔者分享你的测试结果。</p>
+<p>今天我们通过简单的配置实现了本地运行ChatGLM3-6B大语言模型。下一篇，嗯我们尝试使用本地大元模型处理更加复杂的任务：自动撰写文案。</p>
+<h2 id="更新一键启动懒人包">更新：一键启动懒人包</h2>
+<p><a href="https://www.123pan.com/s/5cWiVv-WCDC.html" target="_blank" rel="noopener noreffer ">https://www.123pan.com/s/5cWiVv-WCDC.html</a> 提取码:leai</p>
+<p>下载 <code>懒人包/ChatGLM3_cpp.7z</code> 后解压到本地目录，然后下载 <code>量化模型/chatglm3-ggml.bin</code>，</p>
+<p>放在<code>ChatGLM3_cpp</code>目录下。双击“一键运行.bat”就可以启动服务端了</p>
+<p>请注意，你仍然需要配置Chatbox等LLM聊天程序中配置端口（<code>http://127.0.0.1:8000</code>），才能实现本地大语言模型对话。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" data-title="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型" data-hashtags="ChatGLM3,Python,离线,AI,LLM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" data-hashtag="ChatGLM3"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" data-title="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" data-title="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" data-title="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/chatglm3/">ChatGLM3</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/%E7%A6%BB%E7%BA%BF/">离线</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/llm/">LLM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" class="next" rel="next" title="AI本地聊天工具 如何使用Chatbox进行AI对话">AI本地聊天工具 如何使用Chatbox进行AI对话<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">码钉泥的编程世界 | 哔哩哔哩教程</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://martins.nom.za" target="_blank">码钉泥</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
