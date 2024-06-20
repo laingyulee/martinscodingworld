@@ -1,6 +1,23 @@
 {{- $analytics := .Scratch.Get "analytics" | default dict -}}
 
 {{- if $analytics.enable -}}
+
+    {{- /* Statcounter Analytics */ -}}
+  
+    {{- with $analytics.statcounter.id -}}
+        <!-- Default Statcounter code -->
+        <script type="text/javascript">
+        var sc_project={{ $analytics.statcounter.id }}; 
+        var sc_invisible=0; 
+        var sc_security={{ $analytics.statcounter.security }}; 
+        var scJsHost = "https://";
+        document.write("<sc"+"ript type='text/javascript' src='" +
+        scJsHost+
+        "statcounter.com/counter/counter.js'></"+"script>");
+        </script>
+        <!-- End of Statcounter Code -->
+    {{- end -}}
+
     {{- /* Google Analytics */ -}}
     {{- with $analytics.google.id -}}
         <script type="text/javascript">
