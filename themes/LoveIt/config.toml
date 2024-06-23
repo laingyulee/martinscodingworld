@@ -570,7 +570,7 @@
       security = "d9a493f6"
     # Google Analytics
     [params.analytics.google]
-      id = "G-FY51T0FC5X"
+      id = ""
       # whether to anonymize IP
       # 是否匿名化用户 IP
       anonymizeIP = true
