@@ -45,9 +45,11 @@ https://www.123pan.com/s/5cWiVv-Mx0C.html 提取码:leai
 
 ## 文本生成
 
-### ChatGLM3 
+### ChatGLM3/4
 
-ChatGLM3是一款离线的国产的大语言模型。不需要NVIDIA显卡，可以使用CPU运行。
+ChatGLM3/4是一款离线的国产的大语言模型。不需要NVIDIA显卡，可以使用CPU运行。
+
+[2024-6-24] 更新了ChatGLM4-9b-chat的量化模型和懒人包。
 
 https://www.123pan.com/s/5cWiVv-WCDC.html 提取码:leai
 
