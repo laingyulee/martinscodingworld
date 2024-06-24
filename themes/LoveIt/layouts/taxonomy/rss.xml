@@ -34,7 +34,7 @@
             </lastBuildDate>
         {{- end -}}
         <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
-        {{- range .Pages | first (.Site.Params.list.rss | default 10) -}}
+        {{- range where .Pages "Params.hidden" "!=" true  | first (.Site.Params.list.rss | default 10) -}}
             {{- dict "Page" . "Site" .Site | partial "rss/item.html" -}}
         {{- end -}}
     </channel>

@@ -2,6 +2,7 @@
 title: "使用 Ollama + Qwen（通义千问大语言模型）+ AnythingLLM 搭建本地知识库转向"
 date: "2024-06-23T11:31:36+08:00"
 draft: false
+hidden: true
 summary: "文章已搬家，请访问新位置。"
 url: '/ollama-qwentong-yi-qian-wen-da-yu-yan-mo-xing-anythingllm-da-jian-ben-di-zhi-shi-ku-shi-xian-shou-cuo-aizhuan-jia-xi-tong.html'
 ---

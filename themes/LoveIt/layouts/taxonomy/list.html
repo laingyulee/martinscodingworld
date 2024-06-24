@@ -26,7 +26,7 @@
             {{- end -}}
             {{- range $pages.PageGroups -}}
                 <h3 class="group-title">{{ .Key }}</h3>
-                {{- range .Pages -}}
+                {{- range where .Pages "Params.hidden" "!=" true  -}}
                     <article class="archive-item">
                         <a href="{{ .RelPermalink }}" class="archive-item-link">
                             {{- .Title | emojify -}}
