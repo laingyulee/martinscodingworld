@@ -40,7 +40,7 @@ UP提供增值商业服务包括三个方面：部署、定制开发和微调。
 3. 微调 智能客服系统模型
 
 
-![Alt text](../images/Services%E6%9C%8D%E5%8A%A1/%E6%9C%8D%E5%8A%A1%E5%86%85%E5%AE%B9.png)
+![Alt text](/images/Services%E6%9C%8D%E5%8A%A1/%E6%9C%8D%E5%8A%A1%E5%86%85%E5%AE%B9.png)
 &nbsp;
 
 # [Appx. Tech Details]服务技术细节
