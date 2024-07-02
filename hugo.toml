@@ -66,14 +66,6 @@ hasCJKLanguage = true
     url = "/package/"
     title = ""
   [[menu.main]]
-    weight = 6
-    identifier = "service"
-    pre = ""
-    post = ""
-    name = "付费服务"
-    url = "/service/"
-    title = ""
-  [[menu.main]]
     weight = 7
     identifier = "tags"
     pre = ""
