@@ -43,6 +43,14 @@ hasCJKLanguage = true
     title = ""
   [[menu.main]]
     weight = 3
+    identifier = "apps"
+    pre = ""
+    post = ""
+    name = "应用集"
+    url = "/apps/"
+    title = "AI应用"
+  [[menu.main]]
+    weight = 4
     identifier = "gpus"
     pre = ""
     post = ""
@@ -50,7 +58,7 @@ hasCJKLanguage = true
     url = "/gpus/"
     title = ""
   [[menu.main]]
-    weight = 4
+    weight = 5
     identifier = "package"
     pre = ""
     post = ""
@@ -58,7 +66,7 @@ hasCJKLanguage = true
     url = "/package/"
     title = ""
   [[menu.main]]
-    weight = 5
+    weight = 6
     identifier = "service"
     pre = ""
     post = ""
@@ -66,7 +74,7 @@ hasCJKLanguage = true
     url = "/service/"
     title = ""
   [[menu.main]]
-    weight = 6
+    weight = 7
     identifier = "tags"
     pre = ""
     post = ""
@@ -74,7 +82,7 @@ hasCJKLanguage = true
     url = "/tags/"
     title = ""
   [[menu.main]]
-    weight = 7
+    weight = 8
     identifier = "categories"
     pre = ""
     post = ""
@@ -82,7 +90,7 @@ hasCJKLanguage = true
     url = "/categories/"
     title = ""
   [[menu.main]]
-    weight = 8
+    weight = 9
     identifier = "posts"
     pre = ""
     post = ""

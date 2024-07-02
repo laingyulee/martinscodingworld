@@ -93,10 +93,10 @@ AnythingLLM本身对Ollama的支持也非常完善。只需要通过图形界面
 
 在LLM Preference选项卡中，选择Ollama作为后端。依次填写
 
-```jsx
-**URL：[http://127.0.0.1:11434](http://127.0.0.1:11434/)
+```
+URL：http://127.0.0.1:11434/
 Chat Model：选择 qwen:4b
-Token：8192**
+Token：8192
 ```
 
 点击窗口上方的“Save changes”保存生效。
@@ -107,16 +107,15 @@ Token：8192**
 
 在Embedding Model选项卡中，选择Ollama作为后端。依次填写
 
-```jsx
-**URL：[http://127.0.0.1:11434](http://127.0.0.1:11434/)
+```
+URL：http://127.0.0.1:11434
 Chat Model：选择 nomic-embed-text:latest
-Max embedding chunk length：512**
+Max embedding chunk length：512
 ```
 
-<aside>
-💡 注意：这个**Max embedding chunk length**数值会影响文档回答的质量，推荐设置成128-512中的某个数值。从512往下逐级降低，测试效果。太低也不好，对电脑性能消耗大。
 
-</aside>
+> 💡 注意：这个**Max embedding chunk length**数值会影响文档回答的质量，推荐设置成128-512中> 的某个数值。从512往下逐级降低，测试效果。太低也不好，对电脑性能消耗大。
+
 
 点击窗口上方的“Save changes”保存生效。
 
@@ -277,19 +276,14 @@ Ollama目前提供三种向量转化模型，链接如下：
 
 此外还有名为**mxbai-embed-large**向量转换模型，号称性能超过OpenAI的向量转换模型text-embedding-3-large，大家可以自行下载尝试。
 
-<aside>
-💡 下载方式：ollama pull mxbai-embed-large
-详情：https://ollama.com/library/mxbai-embed-large
-
-</aside>
+> 💡 下载方式：ollama pull mxbai-embed-large
+> 详情：https://ollama.com/library/mxbai-embed-large
 
 对于部分同学反映Qwen 4B比较笨，可以尝试Qwen 7B模型或者Zephyr 7B模型。Zephyr 7B是在 mistral 7B 模型的基础上微调出来的一个模型。我测试之后发现中文支持还可以。
 
-<aside>
-💡 Zephyr 7B 下载方式：ollama pull zephyr
-Zephyr 7B详情：https://ollama.com/library/zephyr
+> 💡 Zephyr 7B 下载方式：ollama pull zephyr
+> Zephyr 7B详情：https://ollama.com/library/zephyr
 
-</aside>
 
 我们可以在 [https://ollama.com/library](https://link.zhihu.com/?target=https%3A//ollama.com/library) 中搜索已有我们想要的模型库。以下是一些流行的模型：
 

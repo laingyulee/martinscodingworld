@@ -1,6 +1,6 @@
 ---
 title: "电子书"
-description: "A开源电子书分享"
+description: "AI开源电子书分享"
 type: "page"
 date: 2024-01-01T00:00:00+00:00
 ---
