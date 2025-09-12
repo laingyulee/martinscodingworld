@@ -4,6 +4,8 @@ date: "2023-12-10"
 tags: ["Chatbox", "Python", "Prompt", "AI", "LLM"]
 categories: ["教程"]
 summary: "大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。"
+toc: true
+readTime: true
 ---
 
 # 如何使用Chatbox进行AI对话

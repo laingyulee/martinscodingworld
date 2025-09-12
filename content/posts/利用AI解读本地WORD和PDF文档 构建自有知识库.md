@@ -2,8 +2,9 @@
 title: "利用AI解读本地WORD和PDF文档 构建自有知识库"
 date: "2024-03-17"
 tags: ["Langchain", "知识库", "RAG", "AI", "Ollama"]
-categories: ["教程"]
 summary: "本教程带领大家使用 Ollama + Qwen（通义千问大语言模型）+ AnythingLLM 搭建本地知识库，实现手搓 AI+专家系统。"
+toc: true
+readTime: true
 ---
 
 # 利用AI解读本地WORD和PDF文档 构建自有知识库

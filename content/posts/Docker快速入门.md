@@ -1,10 +1,11 @@
 ---
 title: "Docker快速入门"
-date: "2024-05-17T11:31:36+08:00"
+date: "2024-05-17"
 draft: false
 tags: ["Docker", "虚拟化", "Linux"]
-categories: ["教程"]
 summary: "随着对大语言模型的深度使用，我们现在需要使用一些更加复杂的工具。这些工具并不是可以支持原生的Windows运行环境。为了能够在Windows上方便地使用这些软件或框架集，我们需要安装一套功能非常强大的运行环境，这个运行环境叫做Docker。"
+toc: true
+readTime: true
 ---
 
 # Docker快速入门

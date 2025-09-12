@@ -2,8 +2,9 @@
 title: "AI自动写稿 利用ChatGLM3和Python自动输出长文本"
 date: "2023-12-17"
 tags: ["ChatGLM3", "Python", "自动写作", "AI", "LLM"]
-categories: ["教程"]
 summary: "本教程介绍了如何使用ChatGLM3和Python实现自动撰写稿件，提高写作效率。涵盖了本地大语言模型的优势、自动输出的局限性、长度限制问题以及如何通过设置系统提示词和对话结构来优化AI写作流程。"
+toc: true
+readTime: true
 ---
 
 # 利用ChatGLM3和20行Python自动输出长文本

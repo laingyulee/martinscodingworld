@@ -2,8 +2,9 @@
 title: "Langchain Chatchat 搭建问答知识库"
 date: "2024-04-13"
 tags: ["Langchain", "知识库", "RAG", "AI"]
-categories: ["教程"]
 summary: "Langchain Chatchat是一款非常方便的离线大语言模型知识库管理软件。"
+toc: true
+readTime: true
 ---
 
 # Langchain Chatchat 搭建问答知识库

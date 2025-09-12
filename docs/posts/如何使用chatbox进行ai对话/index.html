@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <title>AI本地聊天工具 如何使用Chatbox进行AI对话 - Martin&#39;s Coding World</title><meta name="Description" content="码码钉泥的编程世界"><meta property="og:url" content="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/">
+<html lang="zh-CN"
+  dir="ltr">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+
+
+<title>
+    
+    AI本地聊天工具 如何使用Chatbox进行AI对话 | Martin&#39;s Coding World
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/"/>
+
+<meta name="msvalidate.01" content="504CCC3A86D2C71356012C723292D83A" />
+
+<meta property="og:url" content="http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/">
   <meta property="og:site_name" content="Martin&#39;s Coding World">
   <meta property="og:title" content="AI本地聊天工具 如何使用Chatbox进行AI对话">
   <meta property="og:description" content="大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。">
@@ -19,119 +55,166 @@
     <meta property="article:tag" content="AI">
     <meta property="article:tag" content="LLM">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI本地聊天工具 如何使用Chatbox进行AI对话">
-  <meta name="twitter:description" content="大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。">
-<meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" /><link rel="prev" href="https://martins.nom.za/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" /><link rel="next" href="https://martins.nom.za/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><meta name="msvalidate.01" content="504CCC3A86D2C71356012C723292D83A" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "AI本地聊天工具 如何使用Chatbox进行AI对话",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/martins.nom.za\/posts\/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D\/"
-        },"genre": "posts","keywords": "Chatbox, Python, Prompt, AI, LLM","wordcount":  5639 ,
-        "url": "https:\/\/martins.nom.za\/posts\/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D\/","datePublished": "2023-12-10T00:00:00+00:00","dateModified": "2023-12-10T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "码钉泥"
-            },"description": ""
-    }
-    </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Martin&#39;s Coding World"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/logo.png"
-        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
-        data-sizes="auto"
-        alt="/logo.png"
-        title="/logo.png" />Martin&#39;s Coding World</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/books/"> 电子书 </a><a class="menu-item" href="/apps/" title="AI应用"> 应用集 </a><a class="menu-item" href="/gpus/"> 显卡推荐 </a><a class="menu-item" href="/package/"> 懒人包 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 存档 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a></div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.5cb1da0adfc6840278f7b4cea20355305c2fdf7328af80e8818ffacf6676ab14.css" media="all">
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body class="light">
+
+  <div class="content">
+    <header>
+      
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Martin&#39;s Coding World</a>
+    </h1>
+
+    <div class="header-menu">
+        
+
+        
+        
+
+        <p
+            class="link ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/posts" >
+                /所有文章
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/about/" >
+                /关于
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/books/" >
+                /电子书
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/apps/" >
+                /应用集
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/gpus/" >
+                /显卡推荐
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/package/" >
+                /懒人包
+            </a>
+        </p>
+        
+
+        <p
+            class="link ">
+            <a href="/tags/" >
+                /标签
+            </a>
+        </p>
+        
+        
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Martin&#39;s Coding World"><img
-        class="lazyload logo"
-        src="/svg/loading.min.svg"
-        data-src="/logo.png"
-        data-srcset="/logo.png, /logo.png 1.5x, /logo.png 2x"
-        data-sizes="auto"
-        alt="/logo.png"
-        title="/logo.png" />Martin&#39;s Coding World</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
+
+    
+
+</div>
+
+    </header>
+
+    <main class="main">
+      
+
+
+
+
+<div class="breadcrumbs"><a href="/">Home</a><span class="breadcrumbs-separator">/</span><a href="/posts/">Posts</a><span class="breadcrumbs-separator">/</span>
+        <a href="/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/">AI本地聊天工具 如何使用Chatbox进行AI对话</a></div>
+
+
+<div >
+  <article>
+    <header class="single-intro-container">
+        
+        <h1 class="single-title">AI本地聊天工具 如何使用Chatbox进行AI对话</h1>
+        <p class="single-summary">大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。</p>
+        
+        <div class="single-subsummary">
+          
+          <div>
+            
+            <p class="single-date">
+              <time datetime="2023-12-10T00:00:00&#43;00:00">2023-12-10</time>
+              &nbsp; · &nbsp;2 min read
+            </p>
+          </div>
         </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/books/" title="">电子书</a><a class="menu-item" href="/apps/" title="AI应用">应用集</a><a class="menu-item" href="/gpus/" title="">显卡推荐</a><a class="menu-item" href="/package/" title="">懒人包</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">存档</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
-    </div>
-</header><div class="search-dropdown desktop">
-        <div id="search-dropdown-desktop"></div>
-    </div>
-    <div class="search-dropdown mobile">
-        <div id="search-dropdown-mobile"></div>
-    </div><main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">目录</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AI本地聊天工具 如何使用Chatbox进行AI对话</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://martins.nom.za" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>码钉泥</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>教程</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-10">2023-12-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5639 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        
+    </header>
+      <aside class="toc">
+        <p><strong>Table of contents</strong></p>
+        <nav id="TableOfContents">
   <ul>
     <li><a href="#大语言模型的应用场景">大语言模型的应用场景</a></li>
     <li><a href="#调校大语言模型">调校大语言模型</a></li>
@@ -142,7 +225,7 @@
         <li><a href="#测试1市场推广助手">测试1：市场推广助手</a></li>
         <li><a href="#marketing-assistant">Marketing Assistant</a></li>
         <li><a href="#测试2-论文写手">测试2： 论文写手</a></li>
-        <li><a href="#heading"></a></li>
+        <li></li>
         <li><a href="#essay-writer">Essay Writer</a></li>
         <li><a href="#测试3博客写手">测试3：博客写手</a></li>
         <li><a href="#blog-post-writer">Blog Post Writer</a></li>
@@ -150,145 +233,267 @@
     </li>
     <li><a href="#结语">结语</a></li>
   </ul>
-</nav></div>
-            </div><div class="content" id="content"><h1 id="如何使用chatbox进行ai对话">如何使用Chatbox进行AI对话</h1>
+</nav>
+      </aside>
+    
+    <div class="single-content">
+      <h1 class="heading" id="如何使用chatbox进行ai对话">
+  如何使用Chatbox进行AI对话
+  <a class="anchor" href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8chatbox%e8%bf%9b%e8%a1%8cai%e5%af%b9%e8%af%9d">#</a>
+</h1>
 <p>更多AIGC教程，访问UP「码钉泥」的B站
-<a href="https://space.bilibili.com/650927704/" target="_blank" rel="noopener noreffer ">https://space.bilibili.com/650927704/</a></p>
+<a href="https://space.bilibili.com/650927704/">https://space.bilibili.com/650927704/</a></p>
 <p>在上篇教程我们已成功安装了本地运行的ChatGLM3客户端。那么它具体可以用来做哪些事情呢？今天我们就尝试使用Chatbox这个界面工具来运行一下我们的本地大语言模型。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled.png"
-        title="Untitled" /></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled.png" >
+    </div>
+
+    
+</figure>
+</p>
 <p>大语言模型如果不能够用于生产力，必然就流于形式，成为科技玩具。的确，很多朋友在试用了大语言模型之后，尽管觉得十分神奇，最后仍是束之高阁，因为实在找不到有哪些合适的场景将大语言模型转换成实际的生产力。</p>
 <p>大语言模型有哪些用？怎么用？怎么免费用？希望我们这套课程能够帮助你解答这些问题。</p>
-<h2 id="大语言模型的应用场景">大语言模型的应用场景</h2>
+<h2 class="heading" id="大语言模型的应用场景">
+  大语言模型的应用场景
+  <a class="anchor" href="#%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b%e7%9a%84%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af">#</a>
+</h2>
 <p>在这里，我分享一点个人经验，我将大语言模型看成三种工具，分别是结构化思维工具、离线百科工具、智能文本处理工具。</p>
 <ol>
 <li>结构化思维工具</li>
 </ol>
 <p>大语言模型可以很好地帮我们梳理思路、提供方法论和准备提纲。俗话说，万事开头难。这一点在案头工作上体现的更加明显。现在，无论你是要进行项目策划，还是要起草专题报道，都可以利用大语言模型帮助准备提纲、指导方向。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%201.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%201.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%201.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%201.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%201.png"
-        title="Untitled" /></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%201.png" >
+    </div>
+
+    
+</figure>
+</p>
 <ol start="2">
 <li>离线本地百科</li>
 </ol>
 <p>利用大语言模型进行一般化信息的查询工作，是一种非常高效的早期资料收集方法。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%202.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%202.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%202.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%202.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%202.png"
-        title="Untitled" /></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%202.png" >
+    </div>
+
+    
+</figure>
+</p>
 <ol start="3">
 <li>智能文本处理</li>
 </ol>
 <p>它可以很方便的帮助我们进行简单的校对、转写、翻译等等工作。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%203.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%203.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%203.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%203.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%203.png"
-        title="Untitled" /></p>
-<h2 id="调校大语言模型">调校大语言模型</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%203.png" >
+    </div>
+
+    
+</figure>
+</p>
+<h2 class="heading" id="调校大语言模型">
+  调校大语言模型
+  <a class="anchor" href="#%e8%b0%83%e6%a0%a1%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b">#</a>
+</h2>
 <p>如果你需要在生产力环境利用大语言模型，你需要学会使用系统提示词（System Prompt）这个情景设定工具。有时候，我们会将系统提示词成为“咒语”。咒语通常是一段描述性的语言，用来指示大语言模型在当前对话周期中的人设以及对话模式。</p>
 <p>一段系统提示词如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">你是一个好用的翻译助手。请将我的中文翻译成英文，将所有非中文的翻译成中文。
-</span></span><span class="line"><span class="cl">我发给你所有的话都是需要翻译的内容，你只需要回答翻译结果。翻译结果请符合中文的语言习惯。
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>你是一个好用的翻译助手。请将我的中文翻译成英文，将所有非中文的翻译成中文。
+</span></span><span style="display:flex;"><span>我发给你所有的话都是需要翻译的内容，你只需要回答翻译结果。翻译结果请符合中文的语言习惯。
 </span></span></code></pre></div><p>这段提示词可以帮助我们将ChatGLM3变成一个本地的翻译工具。</p>
 <p>第一眼看起来，它确实更像咒语，而不是人工智能相关的指令。但是通过设计大语言模型的人设和对话模式，是真切的可以显著提高输出文本的质量、改变文本的结构、提升内容的深度。这是非常有趣的一种体验。同时，这也显示了与AI对话和与人对话的根本不同。</p>
-<h2 id="创建批处理快捷启动服务端">创建批处理快捷启动服务端</h2>
+<h2 class="heading" id="创建批处理快捷启动服务端">
+  创建批处理快捷启动服务端
+  <a class="anchor" href="#%e5%88%9b%e5%bb%ba%e6%89%b9%e5%a4%84%e7%90%86%e5%bf%ab%e6%8d%b7%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e7%ab%af">#</a>
+</h2>
 <p>打开文本编辑工具（记事本或者VSCode），输入以下内容，并保存为 api_chatglm3.bat。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">MODEL</span><span class="o">=</span>%~dp0chatglm3-ggml.bin
-</span></span><span class="line"><span class="cl">call %~dp0Scripts/activate.bat
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> %~dp0
-</span></span><span class="line"><span class="cl">uvicorn chatglm_cpp.openai_api:app --host 127.0.0.1 --port <span class="m">9000</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">set</span> <span style="color:#666;font-weight:bold;font-style:italic">MODEL</span>=%~dp0chatglm3-ggml.bin
+</span></span><span style="display:flex;"><span>call %~dp0Scripts/activate.bat
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">cd</span> %~dp0
+</span></span><span style="display:flex;"><span>uvicorn chatglm_cpp.openai_api:app --host 127.0.0.1 --port 9000
 </span></span></code></pre></div><p>通过双击它就可以快速的激活GLM3的本地API服务端。</p>
 <p>注意，“%~dp0”是Windows系统内置的变量名，表示bat文件所处的目录位置。你应该将这个bat文件存放在chatglm3-ggml.bin文件的同一目录下（也就是上一篇中，我们创建的工作目录）。</p>
-<h2 id="使用chatbox开始对话">使用Chatbox开始对话</h2>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%204.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%204.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%204.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%204.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%204.png"
-        title="Untitled" /></p>
+<h2 class="heading" id="使用chatbox开始对话">
+  使用Chatbox开始对话
+  <a class="anchor" href="#%e4%bd%bf%e7%94%a8chatbox%e5%bc%80%e5%a7%8b%e5%af%b9%e8%af%9d">#</a>
+</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%204.png" >
+    </div>
+
+    
+</figure>
+</p>
 <p>打开Chatbox工具，点击“我的搭档”，可以看到Chatbox工具内置的系统提示词，包括：包括翻译、文案写手、标题设计、论文润色等工具。大家可以点击这些内置提示词，测试不同的对话风格。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%205.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%205.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%205.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%205.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%205.png"
-        title="Untitled" /></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%205.png" >
+    </div>
+
+    
+</figure>
+</p>
 <p>小红书文案是一种格式非常鲜明的文字形式，小红书博主们通常语言夸张、个性张扬，还喜欢在文字中附加大量的emoji和tag。我们来测试一下，Chatbox提供的“小红书文案生成器”系统提示词。</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%206.png"
-        data-srcset="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%206.png, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%206.png 1.5x, /images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%206.png 2x"
-        data-sizes="auto"
-        alt="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%206.png"
-        title="Untitled" /></p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="Untitled" src="/images/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Chatbox%E8%BF%9B%E8%A1%8CAI%E5%AF%B9%E8%AF%9D/Untitled%206.png" >
+    </div>
+
+    
+</figure>
+</p>
 <p>检查一下输出结果，看起来这篇文案确实符合了小红书风格。、</p>
-<h2 id="添加更多系统提示词">添加更多系统提示词</h2>
+<h2 class="heading" id="添加更多系统提示词">
+  添加更多系统提示词
+  <a class="anchor" href="#%e6%b7%bb%e5%8a%a0%e6%9b%b4%e5%a4%9a%e7%b3%bb%e7%bb%9f%e6%8f%90%e7%a4%ba%e8%af%8d">#</a>
+</h2>
 <p><strong>Awesome assistants</strong></p>
 <blockquote>
-<p>A curated list of awesome AI assistants</p>
-</blockquote>
-<p><a href="https://github.com/awesome-assistants/awesome-assistants" target="_blank" rel="noopener noreffer ">https://github.com/awesome-assistants/awesome-assistants</a></p>
+<p>A curated list of awesome AI assistants</p></blockquote>
+<p><a href="https://github.com/awesome-assistants/awesome-assistants">https://github.com/awesome-assistants/awesome-assistants</a></p>
 <p>Awesome Assistants是一个Github项目，它收集了大量的优质系统提示词。239种（还在增加）系统提示词可以极大的丰富我们的选择。尽管Awesome Assistants系统提示词都是英文的，它还是可以很好的控制ChatGLM3模型。这意味着，我们用英语设定大语言模型的人设，也可以改善和优化它的中文输出内容。</p>
-<h3 id="测试1市场推广助手">测试1：市场推广助手</h3>
+<h3 class="heading" id="测试1市场推广助手">
+  测试1：市场推广助手
+  <a class="anchor" href="#%e6%b5%8b%e8%af%951%e5%b8%82%e5%9c%ba%e6%8e%a8%e5%b9%bf%e5%8a%a9%e6%89%8b">#</a>
+</h3>
 <p>我们尝试一下这个名为<strong>Marketing Assistant</strong>（市场推广助手）的系统提示词。</p>
-<h3 id="marketing-assistant">Marketing Assistant</h3>
+<h3 class="heading" id="marketing-assistant">
+  Marketing Assistant
+  <a class="anchor" href="#marketing-assistant">#</a>
+</h3>
 <p>🎯 Hi, I&rsquo;m <strong>Marketing Assistant</strong>. How can I help you?</p>
-<p><code>As an advanced chatbot Marketing Assistant, your primary goal is to assist users to make smart marketing decisions. This may involve designing/writing/editing/describing marketing strategies or providing helpful information. Where possible you should provide marketing examples to support your points and justify your recommendations or solutions. Make sure that marketing strategies that are suggested are targeted for small business and not huge corporations. Be detailed and thorough in your responses. Your ultimate goal is to provide a helpful and enjoyable experience for the user. Format output in Markdown.</code></p>
+<p><code>As an advanced chatbot Marketing Assistant, your primary goal is to assist users to make smart marketing decisions. This may involve designing/writing/editing/describing marketing strategies or providing helpful information. Where possible you should provide marketing examples to support your points and justify your recommendations or solutions. Make sure that marketing strategies that are suggested are targeted for small business and not huge corporations. Be detailed and thorough in your responses. Your ultimate goal is to provide a helpful and enjoyable experience for the user. Format output in Markdown.</code></p>
 <p>问题：</p>
 <blockquote>
-<p>帮我推销一款语音翻译工具</p>
-</blockquote>
+<p>帮我推销一款语音翻译工具</p></blockquote>
 <p>回答如下：</p>
 <blockquote>
 <p>好的，我可以帮您设计一个营销策略来推销这款语音翻译工具。首先，我会介绍这款工具的功能和优点，然后给您一些使用示例，最后提供一些购买建议。</p>
 <p>首先，我们来介绍一下这款语音翻译工具。它是一款可以帮助用户轻松进行语音翻译的工具，支持多种语言，包括英语、中文、日语、法语等等。它使用最先进的人工智能技术，可以准确地将您的语音翻译成目标语言，让您可以与来自不同国家的人进行交流。</p>
 <p>接下来，我们来看一些使用示例。例如，如果您正在旅游，可以使用这款工具轻松地与当地居民交流，了解当地文化和风俗习惯。如果您是 businessperson，可以使用这款工具与来自不同国家的人们进行商务会议和谈判。如果您是学习外语的学生，可以使用这款工具进行口语练习和听力训练。</p>
 <p>最后，我们提供一些购买建议。您可以前往我们的官网或者应用程序商店购买这款工具。我们提供多种价格方案，以满足不同用户的需求。如果您是学生或者个人用户，可以选择免费版本。如果您是企业用户，可以选择付费版本，以获得更多高级功能和更好的服务。</p>
-<p>总结起来，这款语音翻译工具是一款非常实用的工具，可以帮助用户轻松地进行语音翻译，支持多种语言，并且使用最先进的人工智能技术。如果您需要进行语音翻译，不妨考虑一下这款工具，它可以让您的交流更加顺畅和方便。</p>
-</blockquote>
+<p>总结起来，这款语音翻译工具是一款非常实用的工具，可以帮助用户轻松地进行语音翻译，支持多种语言，并且使用最先进的人工智能技术。如果您需要进行语音翻译，不妨考虑一下这款工具，它可以让您的交流更加顺畅和方便。</p></blockquote>
 <p>我们可以对比以下，未设置系统提示词的输出回答：</p>
 <blockquote>
 <p>好的，我可以帮你推销一款名为“TTS智能语音翻译”的工具。</p>
 <p>TTS智能语音翻译是一款功能强大的语音翻译工具，它支持多种语言之间的实时翻译，包括英语、中文、日语、韩语、法语、德语、西班牙语等等。</p>
 <p>使用TTS智能语音翻译非常简单，只需要将需要翻译的文本输入到软件中，软件就会自动将文本翻译成目标语言，并语音输出。TTS智能语音翻译还支持语音识别和语音合成，可以将翻译结果转换为语音，方便听力和口语交流。</p>
 <p>TTS智能语音翻译是一款非常实用的工具，无论您是在旅游、商务、教育、医疗等领域，都可以使用它来帮助您进行跨语言交流。同时，TTS智能语音翻译也提供了多种语言的学习和翻译功能，可以帮助您学习新语言，扩大语言交流的范围。</p>
-<p>TTS智能语音翻译是一款高品质、高效率的语音翻译工具，它可以帮助您轻松应对跨语言交流的挑战，提高您的语言交流能力。如果您正在寻找一款可靠的语音翻译工具，TTS智能语音翻译是您的理想选择。</p>
-</blockquote>
+<p>TTS智能语音翻译是一款高品质、高效率的语音翻译工具，它可以帮助您轻松应对跨语言交流的挑战，提高您的语言交流能力。如果您正在寻找一款可靠的语音翻译工具，TTS智能语音翻译是您的理想选择。</p></blockquote>
 <p>我们可以清晰的感觉到两种文案的风格截然不同。前者更接近于一种可以实际实行的市场推广方案，而后者更像一段简要的产品介绍（这个答案实际上已经跑题了）。</p>
-<h3 id="测试2-论文写手">测试2： 论文写手</h3>
-<h3 id="heading"></h3>
+<h3 class="heading" id="测试2-论文写手">
+  测试2： 论文写手
+  <a class="anchor" href="#%e6%b5%8b%e8%af%952-%e8%ae%ba%e6%96%87%e5%86%99%e6%89%8b">#</a>
+</h3>
+<h3 class="heading" id="">
+  
+  <a class="anchor" href="#">#</a>
+</h3>
 <p>我们再尝试一下这个名为Essay Writer的系统提示词。</p>
-<h3 id="essay-writer">Essay Writer</h3>
+<h3 class="heading" id="essay-writer">
+  Essay Writer
+  <a class="anchor" href="#essay-writer">#</a>
+</h3>
 <p>🔍📝 I&rsquo;m &ldquo;<strong>Essay Writer</strong>&rdquo;. How can I help you?</p>
-<p><code>I want you to act as an essay writer. You will need to research a given topic, formulate a thesis statement, and create a persuasive piece of work that is both informative and engaging.</code></p>
+<p><code>I want you to act as an essay writer. You will need to research a given topic, formulate a thesis statement, and create a persuasive piece of work that is both informative and engaging.</code></p>
 <p>题目：</p>
 <blockquote>
-<p>帮我写一篇关于武汉过早文化的论文</p>
-</blockquote>
+<p>帮我写一篇关于武汉过早文化的论文</p></blockquote>
 <p>回答：</p>
 <blockquote>
 <p>题目：武汉过早文化的发展及其影响</p>
@@ -315,19 +520,23 @@
 <p>参考文献：</p>
 <p>[1] 张三, 李四. 武汉过早文化研究[J]. 湖北社会科学, 2018(5): 65-68.</p>
 <p>[2] 王五, 赵六. 武汉早餐文化变迁研究[J]. 饮食文化, 2019(2): 31-34.</p>
-<p>[3] 李七. 武汉过早文化的发展现状及对策研究[D]. 湖北工业大学, 2020.</p>
-</blockquote>
+<p>[3] 李七. 武汉过早文化的发展现状及对策研究[D]. 湖北工业大学, 2020.</p></blockquote>
 <p>可以看到Essay Writer创作的文章格式非常的正式，如果我们没有修改系统提示词是无法生成像这样的文章的</p>
-<h3 id="测试3博客写手">测试3：博客写手</h3>
+<h3 class="heading" id="测试3博客写手">
+  测试3：博客写手
+  <a class="anchor" href="#%e6%b5%8b%e8%af%953%e5%8d%9a%e5%ae%a2%e5%86%99%e6%89%8b">#</a>
+</h3>
 <p>另一个我比较喜欢的系统提示词是Blog Post Writer（博客写手）。</p>
-<h3 id="blog-post-writer">Blog Post Writer</h3>
+<h3 class="heading" id="blog-post-writer">
+  Blog Post Writer
+  <a class="anchor" href="#blog-post-writer">#</a>
+</h3>
 <p>📚 Hi, I&rsquo;m <strong>Blog Post Writer</strong>. How can I help you?</p>
-<p><code>You are advanced chatbot Blog Post Writer Assistant. Your primary goal is to assist users in writing compelling blog posts on various topics. Provide well-researched information, engaging content, and original ideas to create high-quality blog posts.</code></p>
+<p><code>You are advanced chatbot Blog Post Writer Assistant. Your primary goal is to assist users in writing compelling blog posts on various topics. Provide well-researched information, engaging content, and original ideas to create high-quality blog posts.</code></p>
 <p>我们来测试一下博客写手Prompt和默认Prompt的区别是什么样的：</p>
 <p>问题：</p>
 <blockquote>
-<p>介绍一下武汉的特色</p>
-</blockquote>
+<p>介绍一下武汉的特色</p></blockquote>
 <p>博客写手的回答：</p>
 <blockquote>
 <p>武汉，作为中国湖北省的省会，是一座历史悠久、文化底蕴深厚的城市。它位于长江和汉江的交汇处，拥有丰富的自然资源和人文景观。作为一座拥有 1000 多年历史的古都，武汉有着许多独特的特色，以下是一些值得关注的特点：</p>
@@ -339,8 +548,7 @@
 <li>教育资源丰富：武汉是中国中部地区的重要教育资源基地，拥有多所知名高校，如武汉大学、华中科技大学、武汉理工大学等。这些高校为武汉培养了大量的人才，也为城市的发展和繁荣作出了巨大贡献。</li>
 <li>创新发展的城市氛围：武汉是中国中部地区的重要科技创新中心，拥有众多的高新技术企业和科研机构。这使得武汉充满了创新发展的活力和激情，吸引了大量的人才前来创业和发展。</li>
 </ol>
-<p>总结起来，武汉是一座具有丰富特色的城市，无论是历史、文化、美食还是科技创新，都为这座城市的繁荣和发展做出了巨大的贡献。</p>
-</blockquote>
+<p>总结起来，武汉是一座具有丰富特色的城市，无论是历史、文化、美食还是科技创新，都为这座城市的繁荣和发展做出了巨大的贡献。</p></blockquote>
 <p>默认回答：</p>
 <blockquote>
 <p>武汉市，位于中国湖北省中部，长江流域，是湖北省省会，全国13个副省级市之一。武汉历史悠久，文化底蕴深厚，拥有许多独具特色的景点和活动。以下是一些武汉的特色：</p>
@@ -356,57 +564,141 @@
 <li>武汉博物馆：武汉博物馆是武汉市著名的博物馆，收藏了大量的历史文物和艺术品，展示了武汉的历史文化和艺术底蕴。</li>
 <li>武汉长江隧道：长江隧道是武汉市的一个著名景点，游客可以穿越隧道，欣赏武汉长江两岸的美景。</li>
 </ol>
-<p>以上是武汉市的一些特色景点和活动，相信您在武汉会有愉快的旅行体验。</p>
-</blockquote>
+<p>以上是武汉市的一些特色景点和活动，相信您在武汉会有愉快的旅行体验。</p></blockquote>
 <p>可以看到在不同的系统提示词下，ChatGLM3对于问题的理解层次是不同的。博客写手Prompt的文字总结和概括性的内容比较多，更加凝练。</p>
-<h2 id="结语">结语</h2>
+<h2 class="heading" id="结语">
+  结语
+  <a class="anchor" href="#%e7%bb%93%e8%af%ad">#</a>
+</h2>
 <p>今天的Chatbox使用教程就到此结束，我们可以清晰的看到：通过调整大语言模型的系统提示词，能够影响其输出文本的格式、内容和层次。通过尝试不同的系统提示词可以帮助我们更加有效的将大语言模型应用的实际日常工作。下一节我们将带领大家使用简单的Python指令运行相关的任务，实现自动化写作的目的。</p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2023-12-10</span>
-            </div></div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" data-title="AI本地聊天工具 如何使用Chatbox进行AI对话" data-hashtags="Chatbox,Python,Prompt,AI,LLM"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" data-hashtag="Chatbox"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" data-title="AI本地聊天工具 如何使用Chatbox进行AI对话"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" data-title="AI本地聊天工具 如何使用Chatbox进行AI对话"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://martins.nom.za/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8chatbox%E8%BF%9B%E8%A1%8Cai%E5%AF%B9%E8%AF%9D/" data-title="AI本地聊天工具 如何使用Chatbox进行AI对话"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+
+    </div>
+  </article>
+  <div id="disqus_thread"></div>
+  <script>
+      (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://martinscodingworld.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flexnowrap">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">
+                        无需显卡 利用chatglm3-6b来搭建自己的本地大源模型
+                    </a>
+                </div>
             </div>
+            
         </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/">
+                        AI自动写稿 利用ChatGLM3和Python自动输出长文本
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
     </div>
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/chatbox/">Chatbox</a>,&nbsp;<a href="/tags/python/">Python</a>,&nbsp;<a href="/tags/prompt/">Prompt</a>,&nbsp;<a href="/tags/ai/">AI</a>,&nbsp;<a href="/tags/llm/">LLM</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%9A%84ai%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="prev" rel="prev" title="无需显卡 利用chatglm3-6b来搭建自己的本地大源模型"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>无需显卡 利用chatglm3-6b来搭建自己的本地大源模型</a>
-            <a href="/posts/%E5%88%A9%E7%94%A8chatglm3%E5%92%8C20%E8%A1%8Cpython%E8%87%AA%E5%8A%A8%E8%BE%93%E5%87%BA%E9%95%BF%E6%96%87%E6%9C%AC/" class="next" rel="next" title="AI自动写稿 利用ChatGLM3和Python自动输出长文本">AI自动写稿 利用ChatGLM3和Python自动输出长文本<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <hr />
 </div>
-<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
-            </noscript></div></article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">码钉泥的编程世界 | 哔哩哔哩教程</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://martins.nom.za" target="_blank">码钉泥</a></span></div>
-        </div>
-    </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
-            </a>
-        </div><script type="text/javascript" src="https://martinscodingworld.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script>
-        <script type="text/javascript">
-        var sc_project= 13009638 ; 
-        var sc_invisible=0; 
-        var sc_security="d9a493f6"; 
-        var scJsHost = "https://";
-        document.write("<sc"+"ript type='text/javascript' src='" +
-        scJsHost+
-        "statcounter.com/counter/counter.js'></"+"script>");
-        </script>
-        </body>
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      返回顶部 / back-to-top
+    </a>
+  </div>
+  
+
+</div>
+
+
+    </main>
+  </div>
+
+  
+  
+
+
+
+
+
+    
+
+
+
+
+  <footer>
+    
+
+    
+    
+
+
+
+
+
+    
+
+
+
+
+    
+    
+    
+    <p>码钉泥的编程世界 | Copyright 2024 码钉泥</p>
+    
+
+
+  </footer>
+
+  
+</body>
+
+
+<script type="text/javascript">
+var sc_project= 13009638 ; 
+var sc_invisible=0; 
+var sc_security="d9a493f6"; 
+var scJsHost = "https://";
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+
+
+<script src="/js/theme-switch.js"></script>
+<script defer src="/js/copy-code.js"></script>
 </html>

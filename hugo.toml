@@ -1,99 +1,119 @@
-baseURL = "https://martins.nom.za"
-
-# Change the default theme to be use when building the site with Hugo
-theme = "LoveIt"
-
-# website title
+baseURL = 'https://martins.nom.za'
+languageCode = 'zh-CN'
 title = "Martin's Coding World"
+theme = 'typo'
+faviconPath = '/logo.png'
 
-# language code ["en", "zh-CN", "fr", "pl", ...]
-languageCode = "zh-CN"
-defaultContentLanguage = "zh-cn"
-# language name ["English", "简体中文", "Français", "Polski", ...]
-languageName = "简体中文"
-# 是否包括中日韩文字
-hasCJKLanguage = true
+# Google analytics code
+googleAnalytics = "G-xxxxxxxxx"
 
-# Author config
-[author]
-  name = "码钉泥"
-  email = "me@martins.nom.za"
-  link = "https://martins.nom.za"
+[taxonomies]
+tag = 'tags'
 
-# Menu config
-[menu]
-  [[menu.main]]
-    weight = 1
-    identifier = "about"
-    # you can add extra information before the name (HTML format is supported), such as icons
-    pre = ""
-    # you can add extra information after the name (HTML format is supported), such as icons
-    post = ""
-    name = "关于"
-    url = "/about/"
-    # title will be shown when you hover on this menu link
-    title = ""
-  [[menu.main]]
-    weight = 2
-    identifier = "books"
-    pre = ""
-    post = ""
-    name = "电子书"
-    url = "/books/"
-    title = ""
-  [[menu.main]]
-    weight = 3
-    identifier = "apps"
-    pre = ""
-    post = ""
-    name = "应用集"
-    url = "/apps/"
-    title = "AI应用"
-  [[menu.main]]
-    weight = 4
-    identifier = "gpus"
-    pre = ""
-    post = ""
-    name = "显卡推荐"
-    url = "/gpus/"
-    title = ""
-  [[menu.main]]
-    weight = 5
-    identifier = "package"
-    pre = ""
-    post = ""
-    name = "懒人包"
-    url = "/package/"
-    title = ""
-  [[menu.main]]
-    weight = 7
-    identifier = "tags"
-    pre = ""
-    post = ""
-    name = "标签"
-    url = "/tags/"
-    title = ""
-  [[menu.main]]
-    weight = 8
-    identifier = "categories"
-    pre = ""
-    post = ""
-    name = "分类"
-    url = "/categories/"
-    title = ""
-  [[menu.main]]
-    weight = 9
-    identifier = "posts"
-    pre = ""
-    post = ""
-    name = "存档"
-    url = "/posts/"
-    title = ""
-    
-# Markup related configuration in Hugo
+[params]
+# Meta description
+description = "这里收集了B站教程的文字版，方便大家参考和使用部分代码。"
+
+# Appearance settings
+theme = 'light'
+colorPalette = 'default'
+hideHeader = false
+
+# This is the complete list of palettes available:
+# default;
+# catpuccin;
+# gruvebox;
+# eink;
+# base16-default;
+# base16-eighties;
+# base16-ocean;
+# base16-mocha;
+# base16-cupcake.
+
+# Intro on main page, content is markdown
+homeIntroTitle = 'Hi!我是码钉泥'
+homeIntroContent = """
+这里收集了B站教程的文字版，方便大家参考和使用部分代码。<br>如需更多技术支持，欢迎加入Q群916156957 。
+"""
+
+showFooter = true
+footerContent = "码钉泥的编程世界 | Copyright 2024 码钉泥"
+
+# Collection to display on home
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
+
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = '2006-1-2'
+
+singleDateFormat = '2006-1-2'
+
+[params.stat]
+enable = true
+
+# Breadcrumbs
+[params.breadcrumbs]
+enabled = true
+showCurrentPage = true
+home = "Home"
+
+# Social icons
+[[params.social]]
+name = "bilibili"
+url = "https://www.linkedin.com/in/user/"
+
+[[params.social]]
+name = "github"
+url = "https://github.com/user"
+
+# Main menu pages
+[[params.menu]]
+name = "home"
+url = "/"
+
+[[params.menu]]
+name = "所有文章"
+url = "/posts"
+[[params.menu]]
+name = "关于"
+url = "/about/"
+[[params.menu]]
+name = "电子书"
+url = "/books/"
+[[params.menu]]
+name = "应用集"
+url = "/apps/"
+[[params.menu]]
+name = "显卡推荐"
+url = "/gpus/"
+[[params.menu]]
+name = "懒人包"
+url = "/package/"
+[[params.menu]]
+name = "标签"
+url = "/tags/"
+ 
+
+# Syntax highlight on code blocks
 [markup]
-  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
-  [markup.highlight]
-    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
-    noClasses = false
+[markup.highlight]
+style = 'algol'
+[markup.goldmark]
+[markup.goldmark.renderer]
+    unsafe = true
 
+# Disqus comments
+[params.disqus]
+enable = true
+
+# Giscus comments
+[params.giscus]
+enable = false
+repo = "user/repo"
+repoid = "repoId"
+category = "General"
+categoryid = "categoryId"
+mapping = "pathname"
+theme = "preferred_color_scheme"

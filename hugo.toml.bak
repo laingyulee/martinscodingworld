@@ -1,0 +1,342 @@
+baseURL = "https://martins.nom.za"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "typo"
+
+# website title
+title = "Martin's Coding World"
+
+# language code ["en", "zh-CN", "fr", "pl", ...]
+languageCode = "zh-CN"
+defaultContentLanguage = "zh-cn"
+# language name ["English", "简体中文", "Français", "Polski", ...]
+languageName = "简体中文"
+# 是否包括中日韩文字
+hasCJKLanguage = true
+
+
+[params]
+  title = "Martin's Coding World"
+  # website description for RSS, SEO, Open Graph and Twitter Cards
+  # 网站描述, 用于 RSS, SEO, Open Graph 和 Twitter Cards
+  description = "这里收集了B站教程的文字版，方便大家参考和使用部分代码。<br>如需更多技术支持，欢迎加入Q群916156957 。"
+  # website images for Open Graph and Twitter Cards
+  # 网站图片, 用于 Open Graph 和 Twitter Cards
+  images = []
+
+
+# Author config
+# 作者配置
+[params.author]
+  name = "码钉泥"
+  email = "me@martins.nom.za"
+  link = "https://martins.nom.za"
+
+# Menu config
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "about"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    name = "关于"
+    url = "/about/"
+    # title will be shown when you hover on this menu link
+    title = ""
+  [[menu.main]]
+    weight = 2
+    identifier = "books"
+    pre = ""
+    post = ""
+    name = "电子书"
+    url = "/books/"
+    title = ""
+  [[menu.main]]
+    weight = 3
+    identifier = "apps"
+    pre = ""
+    post = ""
+    name = "应用集"
+    url = "/apps/"
+    title = "AI应用"
+  [[menu.main]]
+    weight = 4
+    identifier = "gpus"
+    pre = ""
+    post = ""
+    name = "显卡推荐"
+    url = "/gpus/"
+    title = ""
+  [[menu.main]]
+    weight = 5
+    identifier = "package"
+    pre = ""
+    post = ""
+    name = "懒人包"
+    url = "/package/"
+    title = ""
+  [[menu.main]]
+    weight = 7
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "标签"
+    url = "/tags/"
+    title = ""
+  [[menu.main]]
+    weight = 8
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "分类"
+    url = "/categories/"
+    title = ""
+  [[menu.main]]
+    weight = 9
+    identifier = "posts"
+    pre = ""
+    post = ""
+    name = "存档"
+    url = "/posts/"
+    title = ""
+
+ # Header config
+  # 页面头部导航栏配置
+  [params.header]
+    # desktop header mode ["fixed", "normal", "auto"]
+    # 桌面端导航栏模式 ["fixed", "normal", "auto"]
+    desktopMode = "fixed"
+    # mobile header mode ["fixed", "normal", "auto"]
+    # 移动端导航栏模式 ["fixed", "normal", "auto"]
+    mobileMode = "auto"
+    # Header title config
+    # 页面头部导航栏标题配置
+    [params.header.title]
+      # URL of the LOGO
+      # LOGO 的 URL
+      logo = "/logo.png"
+      # title name
+      # 标题名称
+      name = "Martin's Coding World"
+      # you can add extra information before the name (HTML format is supported), such as icons
+      # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+      pre = ""
+      # you can add extra information after the name (HTML format is supported), such as icons
+      # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+      post = ""
+      # whether to use typeit animation for title name
+      # 是否为标题显示打字机动画
+      typeit = false
+
+  # Footer config
+  # 页面底部信息配置
+  [params.footer]
+    enable = true
+    # Custom content (HTML format is supported)
+    # 自定义内容 (支持 HTML 格式)
+    custom = "码钉泥的编程世界 | 哔哩哔哩教程"
+    # whether to show Hugo and theme info
+    # 是否显示 Hugo 和主题信息
+    hugo = true
+    # whether to show copyright info
+    # 是否显示版权信息
+    copyright = true
+    # whether to show the author
+    # 是否显示作者
+    author = true
+    # site creation time
+    # 网站创立年份
+    since = 2024
+    # ICP info only in China (HTML format is supported)
+    # ICP 备案信息，仅在中国使用 (支持 HTML 格式)
+    icp = ""
+    # license info (HTML format is supported)
+    # 许可协议信息 (支持 HTML 格式)
+    license= ""
+
+  # App icon config
+  # 应用图标配置
+  [params.app]
+    # optional site title override for the app when added to an iOS home screen or Android launcher
+    # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
+    title = "码钉泥的编程世界"
+    # whether to omit favicon resource links
+    # 是否隐藏网站图标资源链接
+    noFavicon = false
+    # modern SVG favicon to use in place of older style .png and .ico files
+    # 更现代的 SVG 网站图标, 可替代旧的 .png 和 .ico 文件
+    svgFavicon = ""
+    # Android browser theme color
+    # Android 浏览器主题色
+    themeColor = "#ffffff"
+    # Safari mask icon color
+    # Safari 图标颜色
+    iconColor = "#5bbad5"
+    # Windows v8-11 tile color
+    # Windows v8-11 磁贴颜色
+    tileColor = "#da532c"
+
+  # Home page config
+  # 主页信息设置
+  [params.home]
+    # amount of RSS pages
+    # RSS 文章数目
+    rss = 10
+    # Home page profile
+    # 主页个人信息
+    [params.home.profile]
+      enable = true
+      # Gravatar Email for preferred avatar in home page
+      # Gravatar 邮箱，用于优先在主页显示的头像
+      gravatarEmail = ""
+      # URL of avatar shown in home page
+      # 主页显示头像的 URL
+      avatarURL = ""
+      # title shown in home page (HTML format is supported)
+      # 主页显示的网站标题 (支持 HTML 格式)
+      title = "码钉泥的编程世界"
+      # subtitle shown in home page (HTML format is supported)
+      # 主页显示的网站副标题 (允许 HTML 格式)
+      subtitle = "这里收集了B站教程的文字版，方便大家参考和使用部分代码。<br>如需更多技术支持，欢迎加入Q群916156957 。"
+      # whether to use typeit animation for subtitle
+      # 是否为副标题显示打字机动画
+      typeit = true
+      # whether to show social links
+      # 是否显示社交账号
+      social = true
+      # disclaimer (HTML format is supported)
+      # 免责声明 (支持 HTML 格式)
+      disclaimer = "更多AIGC教程，访问UP「码钉泥」的B站 https://space.bilibili.com/650927704/"
+    # Home page posts
+    # 主页文章列表
+    [params.home.posts]
+      enable = true
+      # special amount of posts in each home posts page
+      # 主页每页显示文章数量
+      paginate = 10
+
+# Social config in home page
+  # 主页的社交信息设置
+  [params.social]
+    GitHub = ""
+    Linkedin = ""
+    Twitter = ""
+    Instagram = ""
+    Facebook = ""
+    Telegram = ""
+    Medium = ""
+    Gitlab = ""
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    Mastodon = ""
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = ""
+    Bilibili = "https://space.bilibili.com/650927704/"
+    Discord = ""
+    DiscordInvite = ""
+    Lichess = ""
+    ORCID = ""
+    Pleroma = ""
+    Kaggle = ""
+    MediaWiki= ""
+    Plume = ""
+    HackTheBox = ""
+    RootMe= ""
+    Malt = ""
+    TikTok = ""
+    TryHackMe = ""
+    Codeberg = ""
+    Email = ""
+    Phone = ""
+    RSS = ""
+
+  # Comment config
+  # 评论系统设置
+  [params.page.comment]
+    enable = false
+    # Disqus comment config (https://disqus.com/)
+    # Disqus 评论系统设置 (https://disqus.com/)
+    [params.page.comment.disqus]
+      enable = true
+      # Disqus shortname to use Disqus in posts
+      # Disqus 的 shortname，用来在文章中启用 Disqus 评论系统
+      shortname = "martinscodingworld"
+
+  # Site verification code for Google/Bing/Yandex/Pinterest/Baidu
+  # 网站验证代码，用于 Google/Bing/Yandex/Pinterest/Baidu
+  [params.verification]
+    google = ""
+    bing = "504CCC3A86D2C71356012C723292D83A"
+    yandex = ""
+    pinterest = ""
+    baidu = ""
+
+  # Analytics config
+  # 网站分析配置
+  [params.analytics]
+    enable = true
+    # Statcounter Analytics
+    [params.analytics.statcounter]
+      id = 13009638
+      security = "d9a493f6"
+
+# Markup related configuration in Hugo
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

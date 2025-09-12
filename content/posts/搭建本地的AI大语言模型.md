@@ -2,8 +2,9 @@
 title: "无需显卡 利用chatglm3-6b来搭建自己的本地大源模型"
 date: "2023-12-10"
 tags: ["ChatGLM3", "Python", "离线", "AI", "LLM"]
-categories: ["教程"]
 summary: "怎么样搭建一个属于自己的AI大语言模型应用呢？今天我们就利用chatglm3-6b来搭建自己的本地大源模型。"
+toc: true
+readTime: true
 ---
 
 # 搭建本地的AI大语言模型
